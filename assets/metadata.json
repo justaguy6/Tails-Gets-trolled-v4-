@@ -1,0 +1,12 @@
+
+{
+	"name": "Christmas",
+	"category": "extra",
+	"unlockCondition": true,
+	"hideStoryMode": true,
+	"songs": [
+		"Presentless Fox",
+		"No Grinches",
+		"Die Carolers"
+	]
+}

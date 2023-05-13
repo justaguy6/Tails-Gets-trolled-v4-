@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="chrismas_sonic.png">
+	<!-- Created with Adobe Animate version 20.0.3.25487 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name=".sonic20000" x="0" y="0" width="478" height="889" frameX="-92" frameY="-10" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20001" x="478" y="0" width="514" height="881" frameX="-79" frameY="-18" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20002" x="478" y="0" width="514" height="881" frameX="-79" frameY="-18" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20003" x="992" y="0" width="499" height="899" frameX="-88" frameY="0" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20004" x="992" y="0" width="499" height="899" frameX="-88" frameY="0" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20005" x="1491" y="0" width="482" height="894" frameX="-90" frameY="-5" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20006" x="1491" y="0" width="482" height="894" frameX="-90" frameY="-5" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20007" x="1973" y="0" width="473" height="890" frameX="-93" frameY="-9" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20008" x="1973" y="0" width="473" height="890" frameX="-93" frameY="-9" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20009" x="0" y="0" width="478" height="889" frameX="-92" frameY="-10" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20010" x="0" y="0" width="478" height="889" frameX="-92" frameY="-10" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20011" x="0" y="0" width="478" height="889" frameX="-92" frameY="-10" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20012" x="0" y="0" width="478" height="889" frameX="-92" frameY="-10" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20013" x="0" y="0" width="478" height="889" frameX="-92" frameY="-10" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20014" x="2446" y="0" width="561" height="915" frameX="0" frameY="-25" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20015" x="2446" y="0" width="561" height="915" frameX="0" frameY="-25" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20016" x="3007" y="0" width="539" height="910" frameX="-32" frameY="-30" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20017" x="3007" y="0" width="539" height="910" frameX="-32" frameY="-30" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20018" x="0" y="915" width="503" height="852" frameX="-77" frameY="-47" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20019" x="0" y="915" width="503" height="852" frameX="-77" frameY="-47" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20020" x="503" y="915" width="467" height="852" frameX="-89" frameY="-47" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20021" x="503" y="915" width="467" height="852" frameX="-89" frameY="-47" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20022" x="970" y="915" width="463" height="929" frameX="-54" frameY="-13" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20023" x="970" y="915" width="463" height="929" frameX="-54" frameY="-13" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20024" x="1433" y="915" width="464" height="908" frameX="-52" frameY="-33" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20025" x="1433" y="915" width="464" height="908" frameX="-52" frameY="-33" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20026" x="1897" y="915" width="557" height="886" frameX="-99" frameY="-14" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20027" x="1897" y="915" width="557" height="886" frameX="-99" frameY="-14" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20028" x="2454" y="915" width="544" height="897" frameX="-98" frameY="-3" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20029" x="2454" y="915" width="544" height="897" frameX="-98" frameY="-3" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20030" x="2454" y="915" width="544" height="897" frameX="-98" frameY="-3" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20031" x="2454" y="915" width="544" height="897" frameX="-98" frameY="-3" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20032" x="2454" y="915" width="544" height="897" frameX="-98" frameY="-3" frameWidth="656" frameHeight="942"/>
+	<SubTexture name=".sonic20033" x="2454" y="915" width="544" height="897" frameX="-98" frameY="-3" frameWidth="656" frameHeight="942"/>
+</TextureAtlas>

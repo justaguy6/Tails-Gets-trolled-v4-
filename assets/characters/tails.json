@@ -1,0 +1,113 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			],
+			"name": "Tails"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [
+				14,
+				15,
+				16,
+				17
+			],
+			"name": "Tails"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [
+				18,
+				19,
+				20,
+				21
+			],
+			"name": "Tails"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [
+				22,
+				23,
+				24,
+				25
+			],
+			"name": "Tails"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [
+				26,
+				27,
+				28,
+				29
+			],
+			"name": "Tails"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/fuck",
+	"position": [
+		-254,
+		-680
+	],
+	"healthicon": "tails",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		195,
+		20
+	],
+	"camera_position": [
+		80,
+		0
+	],
+	"sing_duration": 6,
+	"scale": 1.1
+}

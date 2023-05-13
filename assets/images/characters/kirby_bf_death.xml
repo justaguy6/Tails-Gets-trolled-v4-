@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="kirby_bf_death.png">
+	<!-- Created with Adobe Animate version 20.0.3.25487 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="kirb0000" x="914" y="831" width="351" height="428" frameX="-188" frameY="-291" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0001" x="914" y="831" width="351" height="428" frameX="-188" frameY="-291" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0002" x="516" y="1131" width="366" height="418" frameX="-181" frameY="-301" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0003" x="516" y="1131" width="366" height="418" frameX="-181" frameY="-301" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0004" x="516" y="718" width="388" height="403" frameX="-169" frameY="-316" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0005" x="516" y="718" width="388" height="403" frameX="-169" frameY="-316" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0006" x="1040" y="422" width="408" height="399" frameX="-162" frameY="-320" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0007" x="1040" y="422" width="408" height="399" frameX="-162" frameY="-320" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0008" x="0" y="1360" width="443" height="378" frameX="-144" frameY="-341" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0009" x="0" y="1360" width="443" height="378" frameX="-144" frameY="-341" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0010" x="1040" y="0" width="413" height="412" frameX="-159" frameY="-307" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0011" x="644" y="0" width="386" height="586" frameX="-162" frameY="-125" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0012" x="644" y="0" width="386" height="586" frameX="-162" frameY="-125" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0013" x="0" y="718" width="506" height="632" frameX="-98" frameY="-75" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0014" x="0" y="718" width="506" height="632" frameX="-98" frameY="-75" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0015" x="0" y="0" width="634" height="708" frameX="0" frameY="0" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0016" x="0" y="0" width="634" height="708" frameX="0" frameY="0" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0017" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0018" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0019" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0020" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0021" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0022" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0023" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0024" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0025" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0026" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0027" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0028" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0029" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0030" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0031" x="1275" y="831" width="315" height="247" frameX="-187" frameY="-461" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0032" x="0" y="0" width="634" height="708" frameX="0" frameY="0" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0033" x="0" y="0" width="634" height="708" frameX="0" frameY="0" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0034" x="0" y="718" width="506" height="632" frameX="-98" frameY="-75" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0035" x="0" y="718" width="506" height="632" frameX="-98" frameY="-75" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0036" x="644" y="0" width="386" height="586" frameX="-162" frameY="-125" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0037" x="644" y="0" width="386" height="586" frameX="-162" frameY="-125" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0038" x="1040" y="0" width="413" height="412" frameX="-159" frameY="-307" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0039" x="0" y="1360" width="443" height="378" frameX="-144" frameY="-341" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0040" x="0" y="1360" width="443" height="378" frameX="-144" frameY="-341" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0041" x="1040" y="422" width="408" height="399" frameX="-162" frameY="-320" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0042" x="1040" y="422" width="408" height="399" frameX="-162" frameY="-320" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0043" x="516" y="718" width="388" height="403" frameX="-169" frameY="-316" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0044" x="516" y="718" width="388" height="403" frameX="-169" frameY="-316" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0045" x="516" y="1131" width="366" height="418" frameX="-181" frameY="-301" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0046" x="516" y="1131" width="366" height="418" frameX="-181" frameY="-301" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0047" x="892" y="1269" width="351" height="428" frameX="-188" frameY="-291" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0048" x="892" y="1269" width="351" height="428" frameX="-188" frameY="-291" frameWidth="634" frameHeight="719"/>
+	<SubTexture name="kirb0049" x="892" y="1269" width="351" height="428" frameX="-188" frameY="-291" frameWidth="634" frameHeight="719"/>
+</TextureAtlas>

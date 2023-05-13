@@ -1,0 +1,95 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"fps": 24,
+			"anim": "idle",
+			"indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+			"name": "pori"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [15, 16, 17],
+			"name": "pori"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [18, 19, 20],
+			"name": "pori"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [21, 22, 23],
+			"name": "pori"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [24, 25, 26],
+			"name": "pori"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [15, 27, 28, 29],
+			"name": "pori"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [18, 30, 31, 32],
+			"name": "pori"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [21, 33, 34, 35],
+			"name": "pori"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [24, 36, 37, 38],
+			"name": "pori"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/pori/oyt_pori",
+	"position": [
+		-495,
+		-870
+	],
+	"healthicon": "pori",
+	"flip_x": true,
+	"healthbar_colors": [
+		112,
+		146,
+		191
+	],
+	"camera_position": [
+		50,
+		200
+	],
+	"sing_duration": 4,
+	"scale": 1
+}

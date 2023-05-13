@@ -1,0 +1,86 @@
+var goomba;
+
+function onAddSpriteGroups(){
+	game.add(game.stage);
+
+	
+	game.add(game.dadGroup);
+	game.add(game.gfGroup);
+	game.add(game.boyfriendGroup);
+
+	game.add(game.stage.foreground);
+	
+	return Function_Stop;
+
+}
+
+function onLoad(stage, foreground){
+	FlxG.camera.antialiasing = true;
+	
+	////
+	var spr1 = new FlxSprite(-100, -731, Paths.image("super-mario-world/hammer_left_bush"));
+	spr1.scrollFactor.set(0.92, 1);
+	add(spr1);
+
+	var spr1f = new FlxSprite(-100-spr1.width, -731, Paths.image("super-mario-world/hammer_left_bush"));
+	spr1f.scrollFactor.set(0.92, 1);
+	spr1f.flipX = true;
+	add(spr1f);
+
+	var spr2 = new FlxSprite(1200, -220, Paths.image("super-mario-world/hammer_mid_bush"));
+	spr2.scrollFactor.set(0.92, 1);
+	spr2.scale.set(1, 1);
+	spr2.updateHitbox();
+	add(spr2);
+
+	var spr3 = new FlxSprite(2500, -788, Paths.image("super-mario-world/hammer_right_bush"));
+	spr3.scrollFactor.set(0.9, 1);
+	add(spr3);
+
+	var spr3f = new FlxSprite(2500 + spr3.width, -788, Paths.image("super-mario-world/hammer_right_bush"));
+	spr3f.scrollFactor.set(0.9, 1);
+	spr3f.flipX = true;
+	add(spr3f);
+
+	var spr4 = new FlxSprite(188, -4, Paths.image("super-mario-world/hammergroundnocorpse"));
+	spr4.scale.set(1.5, 1);
+	add(spr4);
+
+	var spr5 = new FlxSprite(50, 230, Paths.image("super-mario-world/austin"));
+	spr5.scale.set(1.6, 0.5);
+	spr5.updateHitbox();
+	add(spr5);
+
+	var spr6 = new FlxSprite(588 + 1644, -4 + 128, Paths.image("super-mario-world/pussyslayer9000"));
+	spr6.setGraphicSize(606, 129);
+	spr6.updateHitbox();
+	add(spr6);
+	
+	if (goomba != false){
+		speakers = new BGSprite("super-mario-world/speaker", 1220, -90, 0.95, 0.95, ["idle"]);
+		speakers.scale.set(1.1, 1.1);
+		stage.add(speakers);
+		
+		goomba = new BGSprite("super-mario-world/goomba", 3000, 240, 1, 1, ["goomber"]);
+		stage.add(goomba);
+	}
+}
+
+if (lowQuality || getInstance() != PlayState.instance){
+	goomba = false;
+	return;
+}
+
+function onBeatHit(){
+	if (goomba != null && curBeat % 2 == 0){
+		goomba.dance();
+	}
+	if (speakers != null)
+		speakers.dance(true);
+};
+
+onCountdownTick = function(){
+	if (goomba != null){
+		goomba.dance();
+	}
+};

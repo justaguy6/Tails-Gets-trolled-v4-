@@ -1,0 +1,43 @@
+{
+	"bg_color": "0xFF1F92C9",
+	"camera_opponent": [
+		0,
+		-90
+	],
+	"girlfriend": [
+		1650,
+		410
+	],
+	"camera_girlfriend": [
+		0,
+		-90
+	],
+	"boyfriend": [
+		2300,
+		600
+	],
+	"preloadStrings": null,
+	"opponent": [
+		950,
+		600
+	],
+	"hide_girlfriend": false,
+	"directory": "",
+	"camera_speed": 1,
+	"defaultZoom": 0.5,
+	"preload": [
+		{"path": "super-mario-world/speaker"},
+		{"path": "super-mario-world/hammer_left_bush"},
+		{"path": "super-mario-world/hammer_mid_bush"},
+		{"path": "super-mario-world/hammer_right_bush"},
+		{"path": "super-mario-world/hammergroundnocorpse"},
+		{"path": "super-mario-world/austin"},
+		{"path": "super-mario-world/pussyslayer9000"},
+		{"path": "super-mario-world/goomba"}
+	],
+	"camera_boyfriend": [
+		0,
+		-90
+	],
+	"camera_stage": [1650, -200]
+}

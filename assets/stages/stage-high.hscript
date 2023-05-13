@@ -1,0 +1,78 @@
+function onLoad(stage)
+{
+	var add = stage.add;
+	
+	var sky = new FlxSprite(-865, -290);
+	sky.loadGraphic(Paths.image("stage-high/sky"));	
+	sky.scrollFactor.set(0.3, 0.3);
+	sky.scale.set(0.9, 0.9);
+	add(sky);
+
+	var ground = new FlxSprite(-825, 506);
+	ground.loadGraphic(Paths.image("stage-high/ground"));	
+	ground.scrollFactor.set(1, 1);
+	add(ground);
+}
+
+//// Shader shit
+if (ClientPrefs.shaders == "None")
+	return;
+
+importClass("openfl.filters.ShaderFilter");
+
+var detailScale:Float = ClientPrefs.shaders == "Minimal" ? 0.5 : 1;
+
+var highShader = newShader("high");
+highShader.data.effectiveness.value = [25 * 0.01 / detailScale];
+highShader.data.focusDetail.value = [12 * detailScale];
+highShader.data.iTime.value = [0];
+
+var highFilter = new ShaderFilter(highShader);
+
+function removeHighShader()
+{
+	if (highShader != null){
+		if (script.get("game") == null){
+			getInstance().camGame.setFilters([]);
+			return;
+		}
+	
+		game.camGame.setFilters([]);
+		game.camHUD.setFilters([]);
+	}
+}
+
+onDestroy = removeHighShader;
+
+if (script.get("game") == null) // for the title screen, probably.
+{
+	getInstance().camGame.setFilters([highFilter]);
+
+	update = function(elapsed){
+		highShader.data.iTime.value = [Conductor.songPosition * 0.001];
+	}
+
+	return;
+}
+
+function onCreatePost()
+{
+	game.camGame.setFilters([highFilter]);
+	game.camHUD.setFilters([highFilter]);
+	
+	global.set("justHowHighAreYou", 25.0);
+}
+
+function update(elapsed)
+{
+	var justHowHighAreYou = global.get("justHowHighAreYou");
+	
+	if (justHowHighAreYou == null) 
+		justHowHighAreYou = 25;
+	
+	highShader.data.effectiveness.value = [justHowHighAreYou * 0.01 / detailScale];
+	highShader.data.focusDetail.value = [12 * detailScale];
+	highShader.data.iTime.value = [Conductor.songPosition * 0.001];
+}
+
+onGameOver = removeHighShader;

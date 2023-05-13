@@ -1,0 +1,42 @@
+importClass("GameOverSubstate");
+importClass("flixel.tweens.FlxTween");
+importClass("flixel.tweens.FlxEase");
+
+var jizzed = false;
+
+function onCreatePost(){
+    GameOverSubstate.deathSoundName = 'kirbf_loss';
+}
+
+function onGameOverStart(){	
+	instance = GameOverSubstate.instance;
+	var bf = instance.boyfriend;
+    var mid = bf.getGraphicMidpoint();
+
+    instance.isFollowingAlready = true;
+    instance.updateCamera = false;
+
+    FlxG.camera.follow(instance.camFollowPos);
+
+    bf.playAnim("cumming");
+    FlxTween.tween(instance.camFollowPos, {x: mid.x, y: mid.y}, 1, {ease: FlxEase.smootherStepOut, onComplete: function(twn){
+        if (!jizzed){
+			bf.playAnim("firstDeath");
+			jizzed = true;
+		}
+    }});
+}
+
+function onGameOverConfirm()
+{
+	if (!jizzed){
+		jizzed = true;
+		instance.boyfriend.playAnim("cumming");
+		
+		var snd = instance.deathSound;
+		if (snd != null){
+			var sowy = 1.5 - (snd.time * 0.001);
+			snd.fadeOut(sowy, 0, snd.stop);
+		}	
+	}
+}

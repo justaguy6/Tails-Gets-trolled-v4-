@@ -1,0 +1,44 @@
+importClass("flixel.math.FlxPoint");
+
+var thePoint;
+var xP = 0;
+var yP = 0;
+
+function onCreatePost()
+{
+	game.cpuControlled = true;
+	thePoint = game.customCamera;
+	game.addCameraPoint(thePoint);
+	game.camHUD.alpha = 0;
+}
+
+function fuck()
+{
+	// what the fuck?
+	thePoint.set(xP, yP);
+}
+
+function onUpdate(e)
+{
+	var xMov = 0;
+	var yMov = 0;
+	
+	if (FlxG.keys.pressed.W)
+		yMov--;
+	if (FlxG.keys.pressed.S)
+		yMov++;
+	if (FlxG.keys.pressed.A)
+		xMov--;
+	if (FlxG.keys.pressed.D)
+		xMov++;
+
+	if (FlxG.keys.pressed.Q)
+		game.defaultCamZoom -= e * 0.1;
+	if (FlxG.keys.pressed.E)
+		game.defaultCamZoom += e * 0.1;
+	
+	xP += xMov * 10;
+	yP += yMov * 10;
+
+	fuck();
+}

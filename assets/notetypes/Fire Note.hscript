@@ -1,0 +1,148 @@
+function setupNote(note:Note)
+{
+	note.usesDefaultColours = false;
+	if (downscroll){
+    	note.texture = "DOWNSCROLL_FIRENOTE_assets";
+
+		note.typeOffsetX = 0;
+		note.typeOffsetY = -10;		
+	}else{
+		note.texture = "FIRENOTE_assets";
+
+		note.typeOffsetX = 0;
+		note.typeOffsetY = 8;
+	}
+
+	note.noteSplashDisabled = true;
+	
+	note.canQuant = false;
+	note.colorSwap.hue = 0;
+	note.colorSwap.saturation = 0;
+	note.colorSwap.brightness = 0;
+	
+	note.noAnimation = true;
+	note.noMissAnimation = true;
+	
+	note.missHealth = 0;
+	
+	note.ignoreNote = true;
+}
+
+// i couldn't get the flxgroups to work so i just made my own shit
+var activeSmokes:Array<FlxSprite> = [];
+var deadSmokes:Array<FlxSprite> = [];
+
+function newSmoke(field, data)
+{
+	var smoke = field.spawnSplash(data, getInstance().splashSkin);
+	smoke.frames = Paths.getSparrowAtlas('SHITSPLASH');
+	smoke.animation.addByPrefix('smoke', "f", 24, false);
+	smoke.scale.set(0.5, 0.5);
+	smoke.animation.play("smoke", true);
+	smoke.alpha = 1;
+	return smoke;
+}
+
+var totalHit = 0;
+var secondsPerHit = 0.05;
+var damage = 0.01;
+
+var dpsTable = [
+	25, // 8 seconds to kill you
+	35, // 5.7 seconds to kill you
+	40, // 5 seconds to kill you
+	55, // 3.63.. seconds to kill you
+	80 // 2.5 seconds to kill you
+];
+
+var fireColor = 0xFFF43A04;
+
+var BURNED = 'burned';
+var UNJUDGED = 'none';
+var getWindow = getInstance().judgeManager.getWindow;
+
+function onCreate(){
+	getInstance().judgeManager.judgmentData.set(BURNED, {
+		internalName: "burned", // name used for the image, counters internally, etc. Leave this as 'miss' so when you miss it'll show the fail image, add to the miss counter, etc.
+		displayName: "Burned", // display name, not used atm but will prob be used in judge counter
+		window: 90, // -1 just so even if its added to the hittable judgment array, it'll never be hit
+		score: -100, // score to take away
+		accuracy: -100, // % accuracy to take away on non-Wife3
+		health: 0, // % of health to remove
+		wifePoints: Wife3.mineWeight, // makes it so that it'll take away the appropriate amount from accuracy on Wife3
+		comboBehaviour: 0, // ignore
+		noteSplash: false,
+		hideJudge: true
+	});
+}
+
+// returns the custom 'Burned' judgment if you can hit it
+// TODO: make an easier way to do this (maybe a note variable called like idk staticWindow or smth)
+// which'd just check if diff <= getWindow(staticWindow) and do all this stuff for us vv
+
+function judgeNote(note:Note, diff:Float){
+	if(diff <= getWindow(BURNED))
+		return BURNED;
+
+	return UNJUDGED; // returning unjudged makes it so that this note isnt hittable
+}
+
+
+function updateVariables()
+{
+	var index = Math.min(totalHit, dpsTable.length)-1;
+	
+	if (index < 0){ // No damage
+		damage = 0;
+		game.healthBar.iconP1.changeIcon(game.boyfriend.healthIcon);
+		var hca = game.boyfriend.healthColorArray;
+		game.healthBar.createColoredFilledBar(FlxColor.fromRGB(hca[0], hca[1], hca[2]));
+	}else{
+		damage = dpsTable[index] * 0.01 * secondsPerHit;
+		game.healthBar.iconP1.changeIcon(game.boyfriend.healthIcon + "-burning");
+		game.healthBar.createColoredFilledBar(fireColor);
+	}
+	
+	game.healthBar.updateBar();
+	
+	// trace(totalHit, index, damage);
+	//trace(damage / secondsPerHit, secondsPerHit, damage);
+}
+
+function goodNoteHit(note, field)
+{
+	if(note.hitResult.judgment == BURNED){
+		// damage
+		totalHit++;
+		updateVariables();
+
+		// smoke particles
+		newSmoke(field, note.noteData);
+	}
+}
+
+var secondsElapsed = 0.0;
+var daTimer = 0.0;
+
+function update(elapsed:Float)
+{
+	if (totalHit > 0){
+		secondsElapsed += elapsed;
+		if (secondsElapsed > secondsPerHit)
+		{
+			secondsElapsed -= secondsPerHit;
+			game.health -= damage;
+		}
+		
+		daTimer += elapsed;
+		while(daTimer >= 5){
+			daTimer -= 5;
+			
+			totalHit--;
+			updateVariables();
+		}
+		
+	}else
+		daTimer = 0;
+
+}

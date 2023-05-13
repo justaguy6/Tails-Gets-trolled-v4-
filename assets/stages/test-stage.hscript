@@ -1,0 +1,14 @@
+
+function onLoad(){
+	var dot = new FlxSprite().makeGraphic(1,1,0xFFFFFFFF);
+
+	for (y in 0...256){	
+		for (x in 0...360){
+			var pee = dot.clone();
+			pee.setPosition(x,y);
+			pee.color = FlxColor.setHue(FlxColor.fromRGB(1.351*y, 1.203*y, 0.937*y), x);
+				
+			add(pee);
+		}
+	}
+}

@@ -1,0 +1,116 @@
+var offX:Float = -500;
+var offY:Float = -250;
+
+var boombox;
+var isPlayState = script.get("game") != null;
+
+function newSprite(x, y, ?image:String){
+	var spr = new FlxSprite(x+offX, y+offY, Paths.image(image));
+	spr.active = false; // lol whats this
+	spr.moves = false;
+	return spr;
+}
+
+function onLoad(stage, foreground){
+	var add = stage.add;
+	
+	if (!lowQuality){
+		var city = newSprite(-650 + 1250, 50, "crisis-city/city");
+		city.scrollFactor.set(0.3, 0.3);
+		add(city);
+	
+		var mountain1 = newSprite(-450, -100, "crisis-city/mountain_l");
+		mountain1.scrollFactor.set(0.45, 0.45);
+		add(mountain1);
+		
+		var mountain2 = newSprite(1650, -80, "crisis-city/mountain_r");	
+		mountain2.scrollFactor.set(0.45, 0.45);
+		add(mountain2);
+	}
+
+	var bground = newSprite(-450, 360, "crisis-city/back_ground");
+	bground.scrollFactor.set(0.6, 0.6);
+	add(bground);
+
+	////
+	var river = newSprite(-320 - 75, 620, "crisis-city/lava_river");	
+	river.setGraphicSize(Std.int(river.width + 125), river.height);
+	river.updateHitbox();
+	river.scrollFactor.set(0.8, 0.8);
+	add(river);
+	
+	var lava = new FlxSprite(river.x, river.y + river.height);
+	lava.makeGraphic(river.width, 500, -3321537);
+	lava.scrollFactor.set(0.8, 0.8);
+	add(lava);
+	
+	var ground = newSprite(-700, 750, "crisis-city/ground");
+	ground.setGraphicSize(Std.int(ground.width + 500));
+	ground.updateHitbox();
+	add(ground);
+	
+	if (!isPlayState)
+		return;
+	
+	boombox = new BGSprite("crisis-city/boombox", 350, 370, 1, 1, ["boombox"]);
+	boombox.scale.set(0.8, 0.8);
+	boombox.scrollFactor.set(.9,.9);
+	add(boombox);
+}
+
+function onCreatePost()
+{
+	var gfGroup = game.gfGroup;
+	var dadGroup = game.dadGroup;
+	var bfGroup = game.boyfriendGroup;
+
+	gfGroup.x = dadGroup.x + 125;
+	dadGroup.x = bfGroup.x;
+	bfGroup.x = gfGroup.x - 250;
+	
+	gfGroup.y = bfGroup.y - 50;
+	bfGroup.y += 50;
+	
+	////
+	var alex = game.boyfriend;
+	var silver = game.dad;
+	
+	alex.scrollFactor.set(1.05, 1.05);
+	
+	alex.flipX = !alex.flipX;
+	silver.flipX = !silver.flipX;
+	
+	////
+	silver.xFacing = -1;
+	game.gf.xFacing = 1;
+	alex.xFacing = 1;
+	
+	////
+	game.healthBar.flipX = true;
+	
+	////
+	game.moveCameraSection(PlayState.SONG.notes[0]);
+}
+function onCountdownStarted(){
+	modManager.queueEase(-16, -4, "opponentSwap", 1, "quadOut", -1, 0.5);
+
+	var shit = [0,1,2,3];
+	// just to stop an error w/ hscript when using debug stuff
+	// which for some reason happens with for loops
+	for (i in shit){
+		modManager.queueSet(-16, "receptor"+i+"Angle", 360, 0);
+		modManager.queueSet(-16, "receptor"+i+"Angle", -360, 1);
+		modManager.queueEase(-16, -4, "receptor"+i+"Angle", 0, "quadOut", 0);
+		modManager.queueEase(-16, -4, "receptor"+i+"Angle", 0, "quadOut", 1);
+	}
+}
+
+// boombox
+if (lowQuality || !isPlayState){
+	return;
+}
+
+function onBeatHit(){
+	if (boombox != null)
+		boombox.animation.play("boombox", true);
+};

@@ -1,0 +1,112 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12
+			],
+			"name": ".sonic2"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [
+				14,
+				15,
+				16,
+				17
+			],
+			"name": ".sonic2"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [
+				26,
+				27,
+				28,
+				29
+			],
+			"name": ".sonic2"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [
+				22,
+				23,
+				24,
+				25
+			],
+			"name": ".sonic2"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [
+				18,
+				19,
+				20,
+				21
+			],
+			"name": ".sonic2"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/sonic2",
+	"position": [
+		-328,
+		-850
+	],
+	"healthicon": "sonic-forced",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		162,
+		232
+	],
+	"camera_position": [
+		-15,
+		30
+	],
+	"sing_duration": 6.1,
+	"scale": 0.9
+}

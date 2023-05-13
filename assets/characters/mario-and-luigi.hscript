@@ -1,0 +1,119 @@
+var mario;
+var luigi;
+
+var X = 0;
+var Y = 0;
+
+var StringMap = getClass("haxe.ds.StringMap");
+var lugiMap = new StringMap();
+
+function makeLuigi(char){
+	var newLuigi = new Character(X + 150, Y + 10, char, false);
+	newLuigi.x += newLuigi.positionArray[0];
+	newLuigi.y += newLuigi.positionArray[1];
+	newLuigi.alpha = 0.001;
+	
+	game.dadGroup.add(newLuigi);
+	lugiMap.set(char, newLuigi);
+}
+function changeLuigi(to){
+	if (!lugiMap.exists(to))
+		makeLuigi(to);
+	
+	if (luigi != null)
+		luigi.alpha = 0.001;
+	
+	luigi = lugiMap.get(to);
+	luigi.alpha = 1;
+}
+
+function onLoad(main){
+	main.visible = false;
+	
+	X = main.x;
+	Y = main.y;
+	
+	main.x -= 330;
+	main.y -= 870;
+	
+	mario = new Character(X - 420, Y - 10, "mario", false);
+	mario.x += mario.positionArray[0];
+	mario.y += mario.positionArray[1];
+
+	game.dadGroup.add(mario);
+	
+	changeLuigi("luigi");
+}
+
+// false voiceline on note
+var marioFVLON = false;
+var luigiFVLON = false;
+
+// madness
+var mrlSpin;
+var mrlTired;
+var mrlFall;
+
+var onNote = function(note:Note, field:PlayField){
+	if(field != game.dadField)
+		return;
+
+	if(note.noteType == 'Alt Animation'){
+		//trace("loogi");
+		note.noteType = '';
+		note.characters = [luigi];
+	}else
+		note.characters = [mario];
+
+	for(char in note.characters)
+		char.voicelining = false;
+}
+
+preNoteMiss = onNote;
+preGoodNoteHit = onNote;
+preOpponentNoteHit = onNote;
+
+function onEvent(name, value1, value2){	
+	switch (name){
+		case "Play Animation":
+			switch (value2){
+				case "luigi":
+					switch(value1){
+						case "alright":
+							luigiFVLON = true;
+							luigi.voicelining = true;
+							luigi.playAnim("alright", true);
+							mario.playAnim("idle", true);
+						case "fall":							
+							luigi.voicelining = true;
+							luigi.playAnim("fall", true);
+					}
+				case "mario":
+					if (value1 == "letsago"){
+						luigi.voicelining = true;
+						luigiFVLON = true;
+					}
+					marioFVLON = true;
+					mario.voicelining = true;
+					mario.playAnim(value1, true);
+					
+			}
+		case "Change Luigi":
+			luigi.playAnim("trans");
+			luigi.voicelining = true;
+			
+			var luigi = luigi;
+			luigi.animation.finishCallback = function(a){
+				changeLuigi(value1);
+				luigi.animation.finishCallback = null;
+			}
+	}
+}
+
+//// Precaching
+function eventEarlyTrigger(name, value1, value2){
+	switch(name){
+		case "Change Luigi":
+			makeLuigi(value1);
+	}
+}

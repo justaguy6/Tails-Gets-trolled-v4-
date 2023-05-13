@@ -1,0 +1,57 @@
+	function shuffle(array)
+	{
+		var maxValidIndex = array.length - 1;
+		for (i in 0...maxValidIndex)
+		{
+			var j = FlxG.random.int(i, maxValidIndex);
+			var tmp = array[i];
+			array[i] = array[j];
+			array[j] = tmp;
+		}
+	}
+
+function onCreatePost(){
+
+	
+	for (field in game.playfields){
+		// get the notes
+		var notes = [];
+		for (queue in field.noteQueue){
+			while (queue.length > 0){
+				notes.push(queue.pop());
+			}
+		}
+		
+		//
+		var numberOfKeys = field.noteQueue.length;
+		
+		// modifier
+		var noteDataTable;
+		switch (1){
+			case 1: // invert
+				noteDataTable = [for (n in 0...numberOfKeys){numberOfKeys-1-n;}];
+			case 2: // move by random
+				var randomu = FlxG.random.int(0,numberOfKeys-1);
+				noteDataTable = [for (n in 0...numberOfKeys){(n+randomu)%numberOfKeys;}];
+			case 3: // shuffle
+				noteDataTable = [for (n in 0...field.noteQueue.length){n;}];
+				shuffle(noteDataTable);
+		}
+		trace(noteDataTable);
+		
+		// do the shite
+		while (notes.length > 0){
+			var note = notes.pop();
+			var daNoteData = note.parent!=null ? note.parent.noteData : noteDataTable[note.noteData]; // for the sustains
+			note.noteData = daNoteData;
+			field.noteQueue[daNoteData].push(note);
+		}
+	}
+	
+	
+	trace("succ");
+}
+
+function onCountdownStarted(){
+	//modManager.queueSet(0, "alpha", 1, -1);
+}

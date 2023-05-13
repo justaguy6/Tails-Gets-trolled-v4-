@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="knuckles bg.png">
+	<!-- Created with Adobe Animate version 20.0.3.25487 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="knuckles bg back idle0000" x="0" y="994" width="467" height="948" pivotX="290.15" pivotY="427.9" frameX="-92" frameY="-25" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0001" x="0" y="994" width="467" height="948" frameX="-92" frameY="-25" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0002" x="0" y="994" width="467" height="948" frameX="-92" frameY="-25" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0003" x="0" y="994" width="467" height="948" frameX="-92" frameY="-25" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0004" x="560" y="975" width="544" height="971" frameX="0" frameY="-3" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0005" x="560" y="975" width="544" height="971" frameX="0" frameY="-3" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0006" x="1648" y="976" width="528" height="974" frameX="-9" frameY="0" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0007" x="1648" y="976" width="528" height="974" frameX="-9" frameY="0" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0008" x="560" y="0" width="565" height="975" frameX="-9" frameY="0" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0009" x="560" y="0" width="565" height="975" frameX="-9" frameY="0" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0010" x="560" y="0" width="565" height="975" frameX="-9" frameY="0" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0011" x="560" y="0" width="565" height="975" frameX="-9" frameY="0" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0012" x="560" y="0" width="565" height="975" frameX="-9" frameY="0" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back idle0013" x="560" y="0" width="565" height="975" frameX="-9" frameY="0" frameWidth="574" frameHeight="975"/>
+	<SubTexture name="knuckles bg back shoot0000" x="1686" y="0" width="557" height="976" pivotX="281.95" pivotY="428.7" frameX="0" frameY="0" frameWidth="561" frameHeight="976"/>
+	<SubTexture name="knuckles bg back shoot0001" x="1686" y="0" width="557" height="976" frameX="0" frameY="0" frameWidth="561" frameHeight="976"/>
+	<SubTexture name="knuckles bg back shoot0002" x="1125" y="0" width="561" height="975" frameX="0" frameY="-1" frameWidth="561" frameHeight="976"/>
+	<SubTexture name="knuckles bg back shoot0003" x="1125" y="0" width="561" height="975" frameX="0" frameY="-1" frameWidth="561" frameHeight="976"/>
+	<SubTexture name="knuckles bg back shoot0004" x="1125" y="0" width="561" height="975" frameX="0" frameY="-1" frameWidth="561" frameHeight="976"/>
+	<SubTexture name="knuckles bg crazy0000" x="0" y="0" width="560" height="994" pivotX="291.95" pivotY="448.8" frameX="0" frameY="0" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0001" x="0" y="0" width="560" height="994" frameX="0" frameY="0" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0002" x="1104" y="975" width="544" height="971" frameX="-1" frameY="-24" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0003" x="1104" y="975" width="544" height="971" frameX="-1" frameY="-24" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0004" x="2176" y="978" width="528" height="974" frameX="-10" frameY="-21" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0005" x="2176" y="978" width="528" height="974" frameX="-10" frameY="-21" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0006" x="2243" y="0" width="545" height="978" frameX="-10" frameY="-18" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0007" x="2243" y="0" width="545" height="978" frameX="-10" frameY="-18" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0008" x="2243" y="0" width="545" height="978" frameX="-10" frameY="-18" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0009" x="2243" y="0" width="545" height="978" frameX="-10" frameY="-18" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0010" x="2243" y="0" width="545" height="978" frameX="-10" frameY="-18" frameWidth="560" frameHeight="996"/>
+	<SubTexture name="knuckles bg crazy0011" x="2243" y="0" width="545" height="978" frameX="-10" frameY="-18" frameWidth="560" frameHeight="996"/>
+</TextureAtlas>

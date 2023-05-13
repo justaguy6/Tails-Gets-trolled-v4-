@@ -1,0 +1,64 @@
+var game = getInstance();
+
+function playNoteAnim(anim:String, note:Note){
+	this.idleWhenHold = false;
+	game.gf.idleWhenHold = true;
+}
+
+function onCreatePost(){
+	var gf = game.gf;
+	
+	if (this.isPlayer)
+		gf.flipX = !gf.flipX;
+	
+	gf.x += game.BF_X - game.GF_X;
+	gf.y += game.BF_Y - game.GF_Y - 10;
+	
+	this.x += 420;
+	this.y += 10;
+
+	GameOverSubstate.deathSoundName = "hammerhead_gameOver";
+	//this.idleWhenHold = true;
+}
+
+function onGameOverStart()
+{
+	var instance = getInstance();
+	
+	// instance.cameraSpeed =  3; // fuck not a thing in the engine ill add it next update
+	//FlxTween.tween(FlxG.camera, {zoom: 1}, 3, {ease: FlxEase.quadOut});
+
+	instance.isFollowingAlready = true;
+	
+	var camFollow = instance.camFollow;
+	var camFollowPos = instance.camFollowPos;
+	
+	camFollow.x += 125;
+	
+	FlxG.camera.follow(camFollowPos);
+	script.set("onUpdate", (elapsed)->{
+		var lerpVal = CoolUtil.boundTo(elapsed * 0.6 *3, 0, 1);
+		camFollowPos.setPosition(
+			FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), 
+			FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal)
+		);
+		FlxG.camera.zoom = FlxMath.lerp(FlxG.camera.zoom, .75, CoolUtil.boundTo(elapsed * 2.2, 0, 1));
+	});
+}
+
+/* old gameover
+function onGameOverStart()
+{
+	var inst = getInstance();
+	var bfD = inst.boyfriend;
+
+	var gf = new FlxSprite(bfD.x - 382, bfD.y - 120);
+	gf.frames = Paths.getSparrowAtlas("characters/gf_gameover");
+	gf.animation.addByPrefix("firstDeath", "gf", 24, false);
+	gf.animation.play("firstDeath");
+
+	inst.remove(bfD);
+	inst.add(gf);
+	inst.add(bfD);
+}
+*/

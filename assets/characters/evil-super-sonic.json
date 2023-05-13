@@ -1,0 +1,116 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"cameraOffset": [
+				0,
+				-60
+			],
+			"offsets": [
+				120,
+				370
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "IDLE",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				12,
+				13,
+				12
+			]
+		},
+		{
+			"loop": false,
+			"cameraOffset": [
+				-30,
+				-60
+			],
+			"offsets": [
+				378,
+				318
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "LEFT",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"cameraOffset": [
+				0,
+				-20
+			],
+			"offsets": [
+				311,
+				296
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "DOWN",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"cameraOffset": [
+				30,
+				-60
+			],
+			"offsets": [
+				111,
+				329
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "RIGHT",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"cameraOffset": [
+				0,
+				-120
+			],
+			"offsets": [
+				151,
+				431
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "UP",
+			"indices": []
+		}
+	],
+	"no_antialiasing": true,
+	"image": "characters/evil_sonic_the_new",
+	"position": [
+		-280,
+		-550
+	],
+	"healthicon": "evil-super-sonic",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		242,
+		0
+	],
+	"camera_position": [
+		0,
+		-165
+	],
+	"sing_duration": 4,
+	"scale": 0.7
+}

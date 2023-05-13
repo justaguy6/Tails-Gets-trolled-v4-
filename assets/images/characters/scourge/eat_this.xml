@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="SUCK_these.png">
+	<!-- Created with MY OWN FUCKING HANDS -->
+	<SubTexture name="dialouge0000" x="0" y="0" width="426" height="802" frameX="-4" frameY="0" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0001" x="426" y="0" width="426" height="802" frameX="-4" frameY="0" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0002" x="852" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0003" x="1274" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0004" x="1696" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0005" x="1696" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0006" x="1696" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0007" x="2118" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0008" x="2540" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0009" x="2962" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0010" x="2962" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0011" x="3384" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0012" x="3384" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0013" x="3806" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0014" x="3806" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0015" x="3806" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0016" x="3806" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0017" x="3806" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0018" x="3806" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0019" x="3806" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+	<SubTexture name="dialouge0020" x="3806" y="0" width="422" height="800" frameX="0" frameY="-2" frameWidth="430" frameHeight="802"/>
+</TextureAtlas>

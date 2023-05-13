@@ -1,0 +1,128 @@
+function onCreatePost()
+{
+	if (game.playOpponent) // i should make a different call/event/function/whatever for when a character's dead sprite gets created
+		script.stop();
+}
+
+var doTheDeath = false;
+var didTheDeath = false;
+
+function onGameOver()
+{
+	/*
+	if (game.songMisses == 0){
+		game.boyfriend.deathName = "pico-player-old";
+		script.stop();
+		return;
+	}
+	*/
+
+	GameOverSubstate.deathSoundName = "ahtkdeath";
+	if (doTheDeath) return Function_Continue;
+
+	doTheDeath = true;	
+	
+	return Function_Stop;
+}
+
+var totalElapsed = 0;
+function onUpdate(e){
+	if (doTheDeath && !didTheDeath){
+		if (totalElapsed >= 0.25){
+			didTheDeath = true;
+			game.doDeathCheck(false);
+			game.camOverlay.bgColor = 0x00000000;
+			return;
+		}
+	
+		totalElapsed += e;
+		
+		game.camOverlay.bgColor = FlxColor.lerp(0x00000000, 0xFF1B0008, totalElapsed * 6);
+	}
+}
+
+function onGameOverStart()
+{	
+	var instance = getInstance();
+	var loopSoundName = GameOverSubstate.loopSoundName;
+	var bitch = instance.boyfriend;
+	
+	GameOverSubstate.loopSoundName = "";
+	
+	var wShit = FlxG.width/747;
+	var hShit = FlxG.height/420;
+	var zoom = 1;//Math.max(wShit, hShit);
+	
+	FlxG.camera.zoom = zoom;
+	FlxG.camera.bgColor = 0xFF1B0008;
+	
+	instance.defaultCamZoom = zoom;
+	instance.updateCamera = true;
+	
+	bitch.scale.set(wShit, hShit);
+	instance.camFollow.set(bitch.x + 747/2 , bitch.y + 420/2);
+	instance.camFollowPos.setPosition(instance.camFollow.x, instance.camFollow.y);
+	FlxG.camera.follow(instance.camFollowPos);
+	
+	var overlay = new FlxSprite().makeGraphic(FlxG.width, FlxG.height);
+	overlay.scrollFactor.set();
+	overlay.color = 0xFF590013;
+	overlay.alpha = 0;
+	instance.add(overlay);
+	
+	////
+	var charScript = FunkinHScript.fromString(""); // the game over character instance doesn't start the character scripts :|
+	var didDeathLoop = false;
+	var frameRate = 1/24;
+	charScript.set("onAnimPlay", (nome, forced, r, f)->{
+		if (nome == "deathLoop"){
+			if (didDeathLoop){
+				return Function_Stop;
+			}
+		
+			bitch.scale.set(1, 1);
+			didDeathLoop = true;
+		
+			overlay.alpha = 1;
+			FlxTween.tween(overlay, {alpha: 0}, frameRate*25, {
+				ease: FlxEase.cubicInOut, 
+				startDelay: 0.15, 
+				onUpdate: (twn)->{overlay.color = FlxColor.lerp(0xFF590013, 0xFF1B0008, twn.percent);},
+				onComplete: (twn)->{
+					FlxG.sound.playMusic(Paths.music(loopSoundName), 0.4);
+					
+					FlxG.sound.play(Paths.sound("bowserlaugh"), 1, false, null, true, ()->{
+						FlxG.sound.music.fadeIn(0.6, 0.4, 1);
+					});
+				}
+			});
+			
+			FlxG.sound.music.stop();
+		}
+		else if (nome == "deathConfirm")
+		{
+			if (!didDeathLoop){
+				didDeathLoop = true;
+				return Function_Stop;
+			}
+		
+			FlxTween.num(
+				0, 1, frameRate*26, 
+				{
+					ease: FlxEase.quadIn, 
+					onComplete: (_)->{
+						FlxTween.num(0, 1, frameRate*10, {ease: FlxEase.quadIn},(num)->{
+							FlxG.camera.bgColor = FlxColor.lerp(0xFF150006, 0xFF000000, num);
+						});	
+					}
+				},
+				(num)->{
+					FlxG.camera.bgColor = FlxColor.lerp(0xFF1B0008, 0xFF150006, num);
+				}
+			);
+		}
+	});
+	charScript.set("onUpdate", null);
+	game.funkyScripts.push(charScript);
+	bitch.characterScript = charScript;
+}

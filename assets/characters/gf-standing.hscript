@@ -1,0 +1,6 @@
+var game = getInstance();
+
+function playNote(note:Note){
+    game.boyfriend.idleWhenHold = true;
+	this.idleWhenHold = false;
+}

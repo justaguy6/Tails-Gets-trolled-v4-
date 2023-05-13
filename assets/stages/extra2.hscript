@@ -1,0 +1,15 @@
+function onLoad(stage){	
+	var ground = new FlxSprite(-600, 450);
+	ground.loadGraphic(Paths.image("extra2/ground"));
+	ground.x -= ground.width * 0.25;
+	ground.scale.x = 1.5;
+	ground.updateHitbox(true);
+	
+	var back = new FlxSprite(-550, ground.y - 148);
+	back.loadGraphic(Paths.image("extra2/back"));
+	back.scrollFactor.set(0.7, 0.7);
+	stage.add(back);
+	
+	stage.add(new FlxSprite(ground.x, ground.y + ground.height).makeGraphic(ground.width, 1000, 0xFF23B14D));
+	stage.add(ground);
+}

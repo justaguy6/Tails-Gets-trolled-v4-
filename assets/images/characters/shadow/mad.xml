@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="christmas db shadow.png">
+	<!-- Created with Adobe Animate version 20.0.3.25487 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="shadow mad0000" x="0" y="0" width="652" height="937" frameX="-42" frameY="-188" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0001" x="0" y="0" width="652" height="937" frameX="-42" frameY="-188" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0002" x="652" y="0" width="625" height="945" frameX="-55" frameY="-182" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0003" x="652" y="0" width="625" height="945" frameX="-55" frameY="-182" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0004" x="1277" y="0" width="609" height="961" frameX="-61" frameY="-167" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0005" x="1277" y="0" width="609" height="961" frameX="-61" frameY="-167" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0006" x="1886" y="0" width="607" height="965" frameX="-60" frameY="-163" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0007" x="1886" y="0" width="607" height="965" frameX="-60" frameY="-163" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0008" x="2493" y="0" width="598" height="967" frameX="-60" frameY="-161" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0009" x="2493" y="0" width="598" height="967" frameX="-60" frameY="-161" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0010" x="2493" y="0" width="598" height="967" frameX="-60" frameY="-161" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0011" x="2493" y="0" width="598" height="967" frameX="-60" frameY="-161" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0012" x="2493" y="0" width="598" height="967" frameX="-60" frameY="-161" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0013" x="2493" y="0" width="598" height="967" frameX="-60" frameY="-161" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0014" x="0" y="967" width="769" height="954" frameX="-50" frameY="-174" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0015" x="0" y="967" width="769" height="954" frameX="-50" frameY="-174" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0016" x="769" y="967" width="723" height="958" frameX="-52" frameY="-170" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0017" x="769" y="967" width="723" height="958" frameX="-52" frameY="-170" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0018" x="1492" y="967" width="468" height="1038" frameX="-139" frameY="-126" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0019" x="1492" y="967" width="468" height="1038" frameX="-139" frameY="-126" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0020" x="1960" y="967" width="494" height="1019" frameX="-136" frameY="-143" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0021" x="1960" y="967" width="494" height="1019" frameX="-136" frameY="-143" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0022" x="2454" y="967" width="902" height="1016" frameX="-1" frameY="-196" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0023" x="2454" y="967" width="902" height="1016" frameX="-1" frameY="-196" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0024" x="0" y="2005" width="908" height="1016" frameX="0" frameY="-196" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0025" x="0" y="2005" width="908" height="1016" frameX="0" frameY="-196" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0026" x="908" y="2005" width="628" height="915" frameX="-74" frameY="-241" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0027" x="908" y="2005" width="628" height="915" frameX="-74" frameY="-241" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0028" x="1536" y="2005" width="650" height="907" frameX="-77" frameY="-231" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0029" x="1536" y="2005" width="650" height="907" frameX="-77" frameY="-231" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0030" x="2186" y="2005" width="1016" height="961" frameX="-78" frameY="-165" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0031" x="2186" y="2005" width="1016" height="961" frameX="-78" frameY="-165" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0032" x="0" y="3021" width="861" height="1126" frameX="-79" frameY="0" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0033" x="0" y="3021" width="861" height="1126" frameX="-79" frameY="0" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0034" x="861" y="3021" width="682" height="1104" frameX="-79" frameY="-22" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0035" x="861" y="3021" width="682" height="1104" frameX="-79" frameY="-22" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0036" x="1543" y="3021" width="642" height="1057" frameX="-79" frameY="-69" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0037" x="1543" y="3021" width="642" height="1057" frameX="-79" frameY="-69" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0038" x="2185" y="3021" width="855" height="902" frameX="-103" frameY="-228" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0039" x="2185" y="3021" width="855" height="902" frameX="-103" frameY="-228" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0040" x="0" y="4147" width="858" height="916" frameX="-102" frameY="-214" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0041" x="0" y="4147" width="858" height="916" frameX="-102" frameY="-214" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0042" x="858" y="4147" width="873" height="909" frameX="-95" frameY="-220" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0043" x="858" y="4147" width="873" height="909" frameX="-95" frameY="-220" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0044" x="1731" y="4147" width="873" height="907" frameX="-95" frameY="-223" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0045" x="1731" y="4147" width="873" height="907" frameX="-95" frameY="-223" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0046" x="0" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0047" x="873" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0048" x="873" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0049" x="873" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0050" x="1746" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0051" x="1746" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0052" x="1746" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0053" x="1746" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0054" x="1746" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+	<SubTexture name="shadow mad0055" x="1746" y="5063" width="873" height="905" frameX="-95" frameY="-226" frameWidth="1094" frameHeight="1212"/>
+</TextureAtlas>

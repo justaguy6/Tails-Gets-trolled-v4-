@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Free texture packer v0.6.7 http://free-tex-packer.com
+-->
+<TextureAtlas imagePath="pico_death_cutscene.png" width="3472" height="3376">
+  <SubTexture name="pico death cutscene0011" x="2" y="2"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0024" x="2" y="426"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0022" x="753" y="2"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0021" x="753" y="426"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0019" x="2" y="850"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0007" x="753" y="850"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0008" x="2" y="1274"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0009" x="753" y="1274"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0010" x="1504" y="2"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0023" x="1504" y="426"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0012" x="1504" y="850"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0013" x="1504" y="1274"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0014" x="2" y="1698"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0015" x="753" y="1698"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0016" x="1504" y="1698"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0017" x="2" y="2122"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0018" x="753" y="2122"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0020" x="1504" y="2122"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0006" x="2255" y="2"  width="715" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0001" x="2255" y="426"  width="686" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0003" x="2255" y="850"  width="683" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0002" x="2255" y="1274"  width="683" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0005" x="2255" y="1698"  width="678" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0004" x="2255" y="2122"  width="668" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0030" x="2" y="2546"  width="581" height="293" frameX="-93" frameY="-105" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0033" x="587" y="2546"  width="575" height="290" frameX="-90" frameY="-108" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0042" x="1166" y="2546"  width="570" height="287" frameX="-86" frameY="-111" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0043" x="1740" y="2546"  width="570" height="287" frameX="-86" frameY="-111" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0036" x="2314" y="2546"  width="568" height="287" frameX="-87" frameY="-111" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0049" x="1166" y="2837"  width="496" height="328" frameX="-108" frameY="-70" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0048" x="587" y="2840"  width="496" height="328" frameX="-108" frameY="-70" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0047" x="2" y="2843"  width="496" height="304" frameX="-108" frameY="-94" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0046" x="1666" y="2837"  width="496" height="289" frameX="-108" frameY="-109" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0044" x="2166" y="2837"  width="498" height="283" frameX="-108" frameY="-115" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0050" x="2668" y="2837"  width="496" height="275" frameX="-108" frameY="-123" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0064" x="2886" y="2546"  width="513" height="224" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0062" x="2927" y="2122"  width="513" height="224" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0066" x="2937" y="1698"  width="513" height="224" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0054" x="2942" y="850"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0056" x="2945" y="426"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0058" x="2974" y="2"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0060" x="2942" y="1077"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0061" x="2942" y="1304"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0052" x="2" y="3151"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0051" x="2668" y="3116"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0055" x="2166" y="3124"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0025" x="2" y="426"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0026" x="2" y="426"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0027" x="2" y="426"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0028" x="2" y="426"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0029" x="2" y="426"  width="747" height="420" frameX="-0" frameY="-0" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0031" x="2" y="2546"  width="581" height="293" frameX="-93" frameY="-105" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0032" x="2" y="2546"  width="581" height="293" frameX="-93" frameY="-105" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0034" x="587" y="2546"  width="575" height="290" frameX="-90" frameY="-108" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0035" x="587" y="2546"  width="575" height="290" frameX="-90" frameY="-108" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0039" x="587" y="2546"  width="575" height="290" frameX="-90" frameY="-108" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0040" x="587" y="2546"  width="575" height="290" frameX="-90" frameY="-108" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0041" x="587" y="2546"  width="575" height="290" frameX="-90" frameY="-108" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0037" x="2314" y="2546"  width="568" height="287" frameX="-87" frameY="-111" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0038" x="2314" y="2546"  width="568" height="287" frameX="-87" frameY="-111" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0045" x="2166" y="2837"  width="498" height="283" frameX="-108" frameY="-115" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0053" x="2" y="3151"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0057" x="2945" y="426"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0059" x="2974" y="2"  width="496" height="223" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0063" x="2927" y="2122"  width="513" height="224" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0065" x="2886" y="2546"  width="513" height="224" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0067" x="2937" y="1698"  width="513" height="224" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0068" x="2937" y="1698"  width="513" height="224" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+  <SubTexture name="pico death cutscene0069" x="2937" y="1698"  width="513" height="224" frameX="-108" frameY="-175" frameWidth="747" frameHeight="420"/>
+</TextureAtlas>

@@ -1,0 +1,24 @@
+var lastAnim = "";
+var totalE = 0.0;
+
+var frameRate = 1/48;
+
+function playNoteAnim(animToPlay, note)
+{
+	if (!note.isSustainNote || note.nextNote == null || note.nextNote.parent != note.parent)
+		return;
+
+	var theAnim = animToPlay + "-sus";
+	
+	if (theAnim != lastAnim){
+		totalE = 0;
+		lastAnim = theAnim;
+		this.playAnim(theAnim, false, false, 0);
+	}else
+		this.playAnim(theAnim, false, false, Math.floor(totalE/frameRate)%6);
+}
+
+
+function update(e){
+	totalE += e;
+}

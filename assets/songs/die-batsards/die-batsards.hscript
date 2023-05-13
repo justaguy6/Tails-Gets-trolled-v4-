@@ -1,0 +1,122 @@
+var hintShadow;
+var hintPopup;
+
+var hintPopped = false;
+
+function onSongStart(){
+	hintPopup.visible = true;
+
+	var preX = hintShadow.x;
+	FlxTween.tween(hintShadow, {x: 0, alpha: 1}, 1, {
+		startDelay: 0.2,
+		ease: FlxEase.quartInOut,
+		onStart: ()->{hintPopup.animation.play("popin");},
+		onComplete: function(twn:FlxTween)
+		{
+
+			FlxTween.tween(hintShadow, {x: preX, alpha: 0}, 1, {
+				ease: FlxEase.quartInOut,
+				startDelay: 1.5,
+				onStart: ()->{
+					new FlxTimer().start(0.05, ()->{hintPopup.animation.play("popout");});
+				},
+				onComplete: function(twn:FlxTween)
+				{
+					game.remove(hintShadow);
+					hintShadow.destroy();
+				}
+			});
+		}
+	});
+}
+
+function onCreatePost()
+{
+	hintShadow = new FlxSprite(0, 0, Paths.image("hint-shadow"));
+	hintShadow.camera = game.camHUD;
+	hintShadow.setGraphicSize(0, hintShadow.camera.height);
+	hintShadow.updateHitbox();
+	hintShadow.alpha = 0;
+	// game.insert(game.members.indexOf(game.hud)-1, hintShadow);
+	game.add(hintShadow);
+	
+	hintPopup = new FlxSprite();
+	hintPopup.camera = game.camHUD;
+	hintPopup.frames = Paths.getSparrowAtlas("hint-popup/die-batsards");
+	hintPopup.animation.addByIndices("popin", "db-hint", [0,1,2], "", 15, false);
+	hintPopup.animation.addByIndices("loop", "db-hint", [3,4,5,6], "", 24, true);
+	hintPopup.animation.addByIndices("popout", "db-hint", [7,8,9], "", 15, false);
+	hintPopup.animation.finishCallback = (name)->{
+		if (name == "popin") hintPopup.animation.play("loop");
+		if (name == "popout") game.remove(hintPopup).destroy();
+	};
+	hintPopup.visible = false;
+	hintPopup.screenCenter();
+	hintPopup.scale.set(1.2, 1.2);
+	game.add(hintPopup);
+
+	if (game.dadField.isPlayer){
+		hintShadow.x -= 35;
+		hintShadow.flipX = true;
+		
+		hintPopup.offset.x = 325;
+		
+		game.moveCamera(game.dad);
+		script.set("onMoveCamera", ()->{
+			if (sectionNumber < 4){	
+				game.moveCamera(mustHitSection ? game.dad : game.boyfriend);
+			
+				return Function_Stop;
+			}else
+				script.set("onMoveCamera", null);
+		});
+	}else{
+		hintPopup.offset.x = -325;
+		hintShadow.x += 35;
+		return;
+	}
+	
+	
+	for(note in game.playerField.getAllNotes()){
+		if(note.noteType == 'Bullet'){
+			var swagNote = new Note(note.strumTime, note.noteData, null);
+			swagNote.mustPress = false;
+			swagNote.sustainLength = 0;
+			swagNote.gfNote = note.gfNote;
+			swagNote.noteType = 'Bullet';
+			swagNote.scrollFactor.set();
+
+			swagNote.ID = game.allNotes.length;
+			game.modchartObjects.set('note${swagNote.ID}', swagNote);
+			
+			swagNote.field = game.dadField;
+			swagNote.fieldIndex = game.playfields.members.indexOf(swagNote.field);
+
+			game.dadField.queue(swagNote); // queues the note to be spawned
+			game.allNotes.push(swagNote); // just for the sake of convenience
+			
+		}
+	}
+	
+	var field = game.dadField;
+	var goobaeg:Array<Note> = [];
+	for(column in field.noteQueue){
+		if(column.length>=2){
+			for(nIdx in 1...column.length){
+				var last = column[nIdx-1];
+				var current = column[nIdx];
+				if(last==null || current==null)continue;
+				if (Math.abs(last.strumTime - current.strumTime) <= Conductor.stepCrochet / (192 / 16)){
+					if(current.noteType == 'Bullet'){
+						goobaeg.push(current);
+					}else
+						field.removeNote(last);
+				}
+				
+			}
+		}
+	}
+	
+	for(note in goobaeg)
+		field.removeNote(note);
+} 

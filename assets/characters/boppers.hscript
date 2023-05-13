@@ -1,0 +1,93 @@
+var state = getInstance();
+var GF_X = state.GF_X;
+var GF_Y = state.GF_Y;
+
+var boppers = [];
+
+var pori;
+var toke;
+var fatty;
+
+function onLoad()
+{
+	if (songName == "Taste For Blood"){
+		//anims = ["idle 2", "surprise", "death"];
+		this.idleSuffix = "-mad";
+	}
+	else{
+		pori = new Character(0, 0, "boppers-pori");
+		pori.scrollFactor.set(0,95, 0.95);
+		boppers.push(pori);
+	}
+
+	toke = new Character(0, 0, "boppers-toke");
+	fatty = new Character(0, 0, "boppers-fatty");
+	
+	toke.scrollFactor.set(0,95, 0.95);
+	fatty.scrollFactor.set(0,95, 0.95);
+
+	boppers.push(toke);
+	boppers.push(fatty);
+
+	for (bopper in boppers){
+		bopper.idleSuffix = this.idleSuffix;
+	
+		bopper.x += bopper.positionArray[0];
+		bopper.y += bopper.positionArray[1];
+		
+		state.gfGroup.add(bopper);
+	}
+	
+	toke.x = this.x - 100;
+	fatty.x = this.x + 1530;
+	if (pori != null)
+		pori.x = fatty.x + 580;
+}
+
+function onDance(){
+	if (this.skipDance != true)
+		for (bopper in boppers)
+			bopper.dance();
+}
+
+var shot = false;
+function shoot(){
+	if (shot)
+		return;
+	shot = true;
+	
+	toke.playAnim("surprise");
+	fatty.playAnim("surprise");
+	
+	this.skipDance = true;
+	this.playAnim("surprise");
+
+	this.animation.finishCallback = function(name){
+		if (name == "surprise"){
+			this.playAnim("kill sequence");
+			
+			this.animation.callback = function(name, frameNumber){
+				switch(frameNumber){
+					case 5:
+						FlxG.sound.play(Paths.sound("TGT_Gunshot1"), 1);	
+					case 8:
+						fatty.playAnim("death");
+						toke.playAnim("death");
+						FlxG.sound.play(Paths.sound("TGT_Gunshot1"), 1);
+					case 11:
+						FlxG.sound.play(Paths.sound("TGT_Gunshot1"), 1);		
+					case 22:
+						FlxG.sound.play(Paths.sound("TGT_Gunshot1"), 1);		
+				}
+			};
+		}
+		else
+		{
+			fatty.destroy();
+			toke.destroy();
+			
+			state.triggerEventNote("Change Character", "gf", "boppers-shadow");
+			state.gf.x -= 285;
+		}
+	};
+}

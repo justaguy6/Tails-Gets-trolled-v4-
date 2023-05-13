@@ -1,0 +1,35 @@
+{
+	"camera_opponent": [0, 100],
+	"girlfriend": [
+		980,
+		560
+	],
+	"camera_girlfriend": [
+		0,
+		0
+	],
+	"boyfriend": [
+		1190,
+		720
+	],
+	"isPixelStage": false,
+	"preloadStrings": null,
+	"opponent": [
+		110,
+		720
+	],
+	"hide_girlfriend": true,
+	"pixel_size": null,
+	"directory": "",
+	"camera_speed": 0.8,
+	"defaultZoom": 0.65,
+
+	"bg_color": "0xFF0D0E2C",
+
+	"preload": [
+		{"path": "stage-high/ground"},
+		{"path": "stage-high/sky"},
+		{"path": "stage-high/smoke"}
+	],
+	"camera_boyfriend": [0, 100]
+}

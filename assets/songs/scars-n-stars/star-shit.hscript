@@ -1,0 +1,331 @@
+importClass("flixel.tweens.FlxTween");
+importClass("flixel.tweens.FlxEase");
+importClass("openfl.filters.ShaderFilter");
+
+var FlxTypedGroup = getClass("flixel.group.FlxTypedGroup");
+var FlxObject = getClass("flixel.FlxObject");
+var FlxRandom = getClass("flixel.math.FlxRandom");
+
+////
+var shaderEnabled = false;
+/*
+var starShader = newShader("stars");
+starShader.data.iTime.value = [0];
+*/
+var bufferA;
+var bufferB;
+var bufferC;
+var finalRender;
+
+var bloom:Float = 0;
+var desiredBloom:Float = 0;
+
+var starSprite:FlxSprite;
+
+////
+var orgBgColor;
+
+var blackOverlay;
+
+var fakeStage;
+var spotlight;
+
+function setMoonlight(value)
+{
+	game.stage.exists = !value;
+	fakeStage.exists = value;
+}
+
+var sowyRandom = new FlxRandom(27);
+var starBox;
+var starGroup;
+var spawnStars = false;
+
+function onCreatePost()
+{
+	/* :-(
+	
+	var star = Paths.image("stars/star1").bitmap;
+	starShader.data.star.input = star;
+	starShader.data.star.filter = 5;
+	
+	starSprite = new FlxSprite().makeGraphic(16, 9, 0xFFFFFFFFFF);
+	starSprite.scrollFactor.set(0.25, 0.25);
+	starSprite.setGraphicSize(Std.int(FlxG.width * 4), Std.int(FlxG.height * 4));
+	starSprite.x += FlxG.width / 2;
+	starSprite.y += FlxG.height / 2;
+	starSprite.antialiasing = false;
+	starSprite.shader = starShader;
+	starSprite.alpha = 0;
+	getInstance().stage.insert(0, starSprite);
+	*/
+	
+	//game.camGame.x = -9999;
+	if(ClientPrefs.shaders == 'All'){
+		shaderEnabled = true;
+		
+		var fakeGameCam = new FlxCamera();
+		fakeGameCam.bgColor = 0;
+	
+		FlxG.cameras.remove(game.camHUD, false);
+		FlxG.cameras.remove(game.camOverlay, false);
+		FlxG.cameras.remove(game.camOther, false);
+		FlxG.cameras.remove(game.camSubs, false);
+		FlxG.cameras.remove(game.camStageUnderlay, false);
+		
+		FlxG.cameras.add(fakeGameCam, false);
+		FlxG.cameras.add(game.camStageUnderlay, false);
+		FlxG.cameras.add(game.camHUD, false);
+		FlxG.cameras.add(game.camOverlay, false);
+		FlxG.cameras.add(game.camSubs, false);
+		FlxG.cameras.add(game.camOther, false);	
+	
+		bufferA = newShader("bloom/bufferA");
+		bufferA.data.LIGHT_TRESHOLD.value = [0.2];
+		bufferA.data.LUMINANCE_MULT.value = [1.0];
+
+		bufferB = newShader("bloom/bufferB");
+		bufferC = newShader("bloom/bufferC");
+		finalRender = newShader("bloom/final");
+		
+		fakeGameCam.setFilters([
+			new ShaderFilter(bufferA),
+			new ShaderFilter(bufferB),
+			new ShaderFilter(bufferC),
+			new ShaderFilter(finalRender)     
+		]);
+		
+		game.camGame.flashSprite.cacheAsBitmap = true;
+	}
+	
+	////
+	fakeStage = new FlxTypedGroup();
+	
+	var groundO = new FlxSprite(-600, 450);
+	groundO.loadGraphic(Paths.image("extra2/groundO"));
+	groundO.x -= groundO.width * 0.25;
+	groundO.scale.x = 1.5;
+	groundO.updateHitbox(true);
+
+	var backO = new FlxSprite(-550, groundO.y - 148);
+	backO.loadGraphic(Paths.image("extra2/backO"));
+	backO.scrollFactor.set(0.7, 0.7);
+
+	var fillerO = new FlxSprite(groundO.x, groundO.y + groundO.height).makeGraphic(groundO.width, 1000);
+	fillerO.color = 0xFF002A18;
+	
+	fakeStage.add(backO);
+	fakeStage.add(fillerO);
+	fakeStage.add(groundO);
+	
+	////
+	spotlight = new FlxSprite(game.boyfriendGroup.x - 260, game.boyfriendGroup.y - 800).loadGraphic(Paths.image("extra2/spotlight"));
+	spotlight.scale.x = 1.25;
+	spotlight.y -= spotlight.height * 0.25;
+	spotlight.scale.y = 1.5;
+	spotlight.visible = false;
+	
+	game.addBehindBF(spotlight);
+	
+	orgBgColor = game.camGame.bgColor;
+	setMoonlight(false);
+	
+	////
+	blackOverlay = new FlxSprite().makeGraphic(1,1);
+	blackOverlay.screenCenter();
+	blackOverlay.scale.set(FlxG.width*10, FlxG.width*10);
+	blackOverlay.color = 0xFF000000;
+	blackOverlay.alpha = 0;
+	
+	starGroup = new FlxTypedGroup();
+	for (_ in 0...39) // prepare some stars
+		starGroup.add(new FlxSprite()).exists = false;
+
+	game.insert(game.members.indexOf(game.stage), fakeStage);
+	game.insert(game.members.indexOf(game.stage)+1, blackOverlay);
+	game.insert(game.members.indexOf(fakeStage), starGroup);
+	
+	////
+	var sowy = 1/1.25;
+	starBox = new FlxObject(
+		600, 
+		180, 			
+		Std.int(FlxG.width * sowy), 
+		Std.int(FlxG.height * 0.5 * sowy)
+	);
+}
+
+////
+function setupStar(star)
+{
+	star.loadGraphic(Paths.image("stars/star" + sowyRandom.int(1, 6)));
+	
+	star.angle = sowyRandom.int(0, 360);
+	star.angularVelocity = 90;
+
+	var srandom = sowyRandom.float(0.7, 0.9);
+	star.scale.set(srandom, srandom);
+	star.scrollFactor.set(srandom, srandom);
+	star.alpha = 1;
+
+	var vrandom = sowyRandom.float(0.95, 1.05);
+	star.velocity.set(-100 * vrandom, 100 * vrandom);
+	
+	star.moves = true;
+	
+	star.setPosition(
+		starBox.x + sowyRandom.int(105, starBox.width), 
+		starBox.y - sowyRandom.float(1, 6) * 55
+	);
+}
+
+////
+function fart()
+{
+	if (starGroup == null)
+	{	
+		//trace("No moar stars");
+		return;
+	}
+
+	for (star in starGroup.members){
+
+		if (star.alive && star.y > starBox.y)
+		{
+			var randomu = sowyRandom.float(1.4, 1.5);
+			star.velocity.set(star.velocity.x * randomu, star.velocity.y * randomu);
+		}
+	}
+
+	for (i in 0...12){		
+		var star = starGroup.recycle(FlxSprite);
+		setupStar(star);
+		
+		starGroup.add(star);
+	}
+	
+	//trace("Current stars: "+starGroup.members.length);
+}
+
+function onUpdate(elapsed)
+{
+	//// Update the shaders.
+	
+	// starShader.data.iTime.value = [Conductor.songPosition/1000];
+	if(shaderEnabled){
+		// shouldnt be done if shaders is off or minimal (bloom tends to lag on lower PCs so yea lol this exists to help w/ that)
+		bloom = FlxMath.lerp(bloom, desiredBloom, 0.035 * (elapsed / (1/60)));
+
+		bufferA.data.LUMINANCE_MULT.value[0] = bloom * 0.5;
+		
+		var bitmapData = game.camGame.flashSprite.__cacheBitmapData;
+		bufferA.data.base.input = bitmapData;
+		finalRender.data.base.input = bitmapData;
+	}
+
+	//// Update the stars
+	if (!spawnStars)
+		return;
+	
+	for (star in starGroup.members)
+	{
+		if (star.alive && (star.x < (starBox.x - star.width) || star.y > (starBox.y + starBox.height)))
+		{
+			star.moves = false;
+			star.kill();
+		}
+		else		
+			star.alpha -= 0.005 * elapsed;
+	}
+}
+
+function onEvent(name, value1, value2)
+{
+	if (name == "Add Camera Zoom" || value1 == "Stargod")
+	{
+		fart();
+	}
+}
+
+function onStepHit()
+{
+	if (!spawnStars)
+		return;
+	
+	for (star in starGroup.members){
+		if (!star.alive){
+			setupStar(star);
+			
+			return;
+		}
+	}
+}
+
+// Get CallbackEvent Progress
+function getCP(event, curStep)
+	return (curStep - event.executionStep) / (event.endStep - event.executionStep);
+
+// The events
+function onCountdownStarted()
+{
+	modManager.queueFunc(1856, 1888, function(event, curStep){
+		var val = FlxEase.circOut(getCP(event, curStep));
+	
+		blackOverlay.alpha = val;
+		game.camGame.bgColor = FlxColor.lerp(orgBgColor, 0xFF0C0E2C, val);
+		
+		game.gfGroup.color = FlxColor.lerp(0xFFFFFFFF, 0xFF0C0E2C, val);
+		game.gf.voicelining = true; // Playing an animation resets the color -_-
+			
+		game.healthBar.alpha = 1-val*1.1;
+	});
+
+	modManager.queueFuncOnce(1888, function(e, cs){
+		setMoonlight(true);
+		
+		var mid = game.boyfriend.getMidpoint();
+		game.triggerEventNote("Camera Follow Pos", Std.string(mid.x - 100), Std.string(mid.y- 100));
+	});
+	modManager.queueFunc(1888, 1917, function(e, cs){
+		var val = FlxEase.circOut(getCP(e, cs));
+		blackOverlay.alpha = 1.6-val;
+	});
+	
+	modManager.queueFuncOnce(1920, function(e, cs){
+		spawnStars = true;
+		blackOverlay.alpha = 0;
+		spotlight.visible = true;
+		
+		bloom = 1;
+		desiredBloom = 0.6;
+	});
+
+	modManager.queueEase(1856, 1856+16, "alpha", 1, "circOut", 1);
+	modManager.queueEase(2400, 2424, "alpha", 0.75, "sineIn", 1);
+	modManager.queueSet(2432, "alpha", 0, -1);
+	
+	modManager.queueFuncOnce(2432, function(e, cs){
+		game.gf.color = 0xFFFFFFFF;
+		game.gf.voicelining = false; // Playing an animation resets the color -_-
+	
+		game.triggerEventNote("Camera Follow Pos", "", "");
+		
+		game.camGame.bgColor = orgBgColor;
+		
+		setMoonlight(false);
+		
+		spotlight.visible = false;
+		
+		bloom = 1;
+		desiredBloom = 0;
+		
+		game.healthBar.alpha = 1;
+		
+		spawnStars = false;
+		game.stage.remove(starGroup);
+		starGroup.destroy();
+		starGroup = null;
+	});
+	
+	modManager.queueEase(3040, 3060, "alpha", 1, "circOut", -1);
+}

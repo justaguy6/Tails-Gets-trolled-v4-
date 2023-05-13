@@ -1,0 +1,135 @@
+var maxHealth = 2;
+
+function setupNote(note:Note){
+
+	note.colorSwap.hue = 0;
+	note.colorSwap.saturation = 0;
+	note.colorSwap.brightness = 0;
+	
+	note.noteSplashHue = 0;
+	note.noteSplashSat = 0;
+	note.noteSplashBrt = 0;
+	
+	note.canQuant = false;
+	
+
+	note.noAnimation = true;
+	note.noMissAnimation = true;
+	
+	note.ratingHealth.clear();
+    //note.missHealth = maxHealth/3;
+
+	note.texture = "BULLETNOTE_assets";
+	note.noteSplashTexture = "BULLETnoteSplashes"; // reminder to add note splash offsets to the engine (8, 15)
+	
+
+}
+
+function dadShoot(){
+	var dad = game.dad;
+	if (dad != null){
+		dad.playAnim("shoot", true);
+		dad.specialAnim = true;
+		dad.animTimer = 1/24*12;
+	}
+}
+function bfPlayAnim(name)
+{
+	var boyfriend = game.boyfriend;
+	if (boyfriend != null){
+		boyfriend.playAnim(name, true);
+		boyfriend.specialAnim = true;
+		boyfriend.animTimer = 1/24*14;
+	}
+}
+
+function onCreate(){
+	game.judgeManager.judgmentData.set("bulletHit", {
+		internalName: "miss", // name used for the image, counters internally, etc. Leave this as 'miss' so when you miss it'll show the fail image, add to the miss counter, etc.
+		displayName: "Fail", // display name, not used atm but will prob be used in judge counter
+		window: -1, // -1 just so even if its added to the hittable judgment array, it'll never be hit
+		score: -350, // score to take away
+		accuracy: -100, // % accuracy to take away on non-Wife3
+		health: -33.333333333, // % of health to remove
+		wifePoints: Wife3.missWeight, // makes it so that it'll take away the appropriate amount from accuracy on Wife3
+		comboBehaviour: -1, // combo break
+		noteSplash: false,
+	});
+}
+
+function goodNoteHit(note:Note, field:PlayField){
+	if (note.noteType != "Bullet")
+		return;
+
+	if(field == game.playerField)
+		bfHit(note, field);
+	else
+		shadowHit();
+}
+
+function preNoteMiss(note:Note, field:PlayField){
+	if (note.noteType != "Bullet")
+		return;
+
+	note.hitResult.judgment = 'bulletHit'; // makes it so instead of it being the miss judgment, it'll do our own custom judgment
+	// the alternative would be setting it to 'customMiss' and then doing the damage in noteMiss
+	// (customMiss is Miss but without the health)
+}
+
+function noteMiss(note:Note, field:PlayField)
+{
+	if (note.noteType != "Bullet")
+		return;
+
+	if(field == game.playerField){
+		dadShoot();
+		bfPlayAnim("shot");
+		
+		game.camHUD.shake(0.01, 0.2);
+		game.camGame.shake(0.01, 0.2);
+		game.camGame.flash(0xCCFF0000, 0.2, null, true); // red
+		
+		game.callOnHScripts("onShoot", [note, field]);
+	}
+}
+
+function opponentNoteHit(note:Note, field:PlayField){
+	if (note.noteType != "Bullet")
+		return;
+
+	note.rating = 'sick';
+	if(field == game.playerField)
+		bfHit(note, field);
+	else
+		shadowHit();
+}
+
+function bfHit(note:Note, field:PlayField){
+	if (note.rating == "bad")
+		game.health -= maxHealth/4;
+	else if (note.rating == "shit")
+		game.health -= maxHealth/3;
+	
+	dadShoot();	
+	bfPlayAnim("dodge");
+	
+	game.camGame.shake(0.01, 0.2);
+	
+	game.callOnHScripts("onShoot", [note, field]);
+}
+
+function shadowHit(){
+	if (game.playerField.isPlayer)
+		game.health *= .25; // fuck it
+	
+	dadShoot();
+}
+function postSpawnNote(note:Note){
+	/*
+	if (note.noteType != "Bullet")
+		return;
+	*/
+
+	if(game.playerField.isPlayer)
+		note.visible = note.mustPress;
+}

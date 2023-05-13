@@ -1,0 +1,8 @@
+var theImage = new FlxSprite().loadGraphic(Paths.image("cutscenes/lonely-looser-1"));
+theImage.alpha = 0;
+
+
+function cutsceneStart(){
+	add(theImage);
+	tween();
+}

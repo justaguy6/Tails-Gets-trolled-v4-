@@ -1,0 +1,112 @@
+var offX:Float = -1000/2;
+var offY:Float = -500/2;
+
+var goomba;
+var chandelier = null;
+var chandelierDanced = false;
+var chandelierGoalAngle = 0;
+var chandelierTween;
+var doChandelierTween;
+
+function onBeatHit(){    
+	if (curBeat % 4 == 2)
+		goomba.dance();
+}
+function onCountdownTick(swag, tmr){
+	if (tmr.loopsLeft % 2 == 0)
+		goomba.dance();
+}
+
+function onLoad(stage, foreground){
+	var makeSprite = function(x,y,i){
+		var spr = new FlxSprite(x + offX, y + offY, Paths.image(i));
+		spr.active = false;
+		spr.moves = false;
+		return spr;
+	}
+	var add = stage.add;
+
+	var bground = makeSprite(-730, -760, "bowsers-castle/background");
+	bground.scrollFactor.set(0.8, 0.8);
+	bground.scale.set(1.25, 1);
+	add(bground);
+
+	var throne = makeSprite(700, 200, "bowsers-castle/throne");
+	throne.scrollFactor.set(0.8, 0.8);
+	throne.scale.set(1.2, 1.2);
+	add(throne);
+	
+	chandelier = new BGSprite("bowsers-castle/chandelier", 155, -420, 0.8, 0.7, ["chandelier"], true);
+	chandelier.scale.set(1.1, 1.1);
+	chandelier.updateHitbox();
+	chandelier.origin.set(chandelier.frameWidth * 0.5, -100);
+	
+	doChandelierTween = function(){
+		var goalAngle = chandelierGoalAngle;
+		var daDuration = (60 / 205)*6;
+	
+		if (chandelierTween==null){
+			goalAngle*=0.9;
+			daDuration*=0.9;
+		}
+		
+		if (chandelierDanced)
+			goalAngle = -goalAngle;
+		
+		chandelierTween = FlxTween.tween(chandelier, {angle: goalAngle}, daDuration, {ease: FlxEase.sineInOut, onComplete: (twn)->{
+			if (chandelierGoalAngle != 0)
+				doChandelierTween();
+			else{
+				chandelierTween = null;
+				game.modchartTweens.remove("chandelier");
+			}
+				
+		}});
+		game.modchartTweens.set("chandelier", chandelierTween);
+		
+		chandelierDanced = !chandelierDanced;
+	}
+	//doChandelierTween();
+	
+	stage.add(chandelier);	
+
+	var pillar = makeSprite(-378, -400, "bowsers-castle/pillar");
+	pillar.scrollFactor.set(1, 1);
+	pillar.scale.set(0.9, 0.9);
+	add(pillar);
+	
+	var ground = makeSprite(-730, -700, "bowsers-castle/ground");
+	ground.setGraphicSize(Std.int(ground.width + 125), ground.height);
+	ground.scale.set(1.15, 1);
+	ground.updateHitbox();
+	add(ground);
+
+	var square = makeSprite(-50, -450, "bowsers-castle/square");
+	square.scrollFactor.set(0.9, 0.95);
+	square.scale.set(0.75, 0.75);
+	add(square);
+
+	var ground2 = makeSprite(ground.x - offX, -offY + ground.y + ground.height, "bowsers-castle/ground");
+	ground2.scale.set(1.1, 2);
+	ground2.updateHitbox();
+	ground2.flipY = true;
+	add(ground2);
+
+	goomba = new BGSprite("bowsers-castle/goomba", 1450, 500, 1, 1, ["goombo"]);
+	goomba.scale.set(1.4, 1.4);
+	stage.add(goomba);
+}
+
+function onEvent(name, val1, val2)
+{
+	if (val1 == "chandelier")
+	{
+		chandelierGoalAngle = Std.parseFloat(val2);
+		
+		if (Math.isNaN(chandelierGoalAngle)) chandelierGoalAngle = 0;
+		
+		if (chandelierTween == null){
+			doChandelierTween();
+		}
+	}
+}

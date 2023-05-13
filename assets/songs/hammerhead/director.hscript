@@ -1,0 +1,237 @@
+importClass("flixel.math.FlxMath");
+
+var add = game.add;
+
+function killScript(name){
+	var scr = game.eventScripts.get(name);
+	
+	if (scr == null)
+		return;
+	
+	game.eventScripts.remove(name);
+	game.hscriptArray.remove(scr);
+	game.funkyScripts.remove(scr);
+	scr.stop();
+}
+
+//// im not wasting my time fixing fucking offsets
+var dadCam = {x: 1270, y: 30};
+var bfCam = {x: 2100, y: 50};
+var customCamera = FlxPoint.get();
+
+var centered = false;
+
+function onCreatePost()
+{
+	killScript("Center Camera");
+	killScript("Set Camera Alignment");
+	killScript("Set Camera Alignment Instant");
+	
+	game.sectionCamera.set(dadCam.x, dadCam.y);
+	game.camFollowPos.setPosition(0, -500);
+	
+	game.dadField.characters = game.dadGroup.members;
+	game.camGame.zoom = 0.5;
+}
+
+function onClose(){
+	customCamera.put();
+}
+
+var customZoom = 1;
+function onUpdate(elapsed){
+	game.defaultCamZoom = (centered ? 0.48 : 0.5) * customZoom;
+}
+
+function onMoveCamera(who){
+	switch (who){
+		case "dad":
+			game.sectionCamera.set(dadCam.x, dadCam.y);
+		case "bf":
+			game.sectionCamera.set(bfCam.x, bfCam.y);
+	}
+	
+	return Function_Stop;
+}
+
+function setCameraAlignment(value1, value2, defaultVal)
+{
+	if(game.stageData.camera_speed != null)
+		game.cameraSpeed = game.stageData.camera_speed;
+	
+	var sowy = Std.parseFloat(value1);
+	if (!Math.isNaN(sowy))
+	{
+		customCamera.set(
+			FlxMath.lerp(dadCam.x, bfCam.x, sowy), 
+			FlxMath.lerp(dadCam.y, bfCam.y, sowy)
+		);
+		game.addCameraPoint(customCamera);
+		
+		var cusSpeed = Std.parseFloat(value2);
+		game.cameraSpeed *= (Math.isNaN(cusSpeed) ? defaultVal : cusSpeed);
+	}
+	else
+	{
+		game.cameraPoints.remove(customCamera);
+	}
+}
+
+var zoomTwn;
+function onEvent(name, value1, value2){
+	switch(name){
+		case "Set Camera Alignment":
+			setCameraAlignment(value1, value2, 1);
+		case "Set Camera Alignment Instant":
+			setCameraAlignment(value1, value2, 3);
+		case "Tween Zoom":	
+			if (zoomTwn != null) {
+				zoomTwn.cancel();
+				zoomTwn.destroy();
+			}
+			
+			var zoom = Std.parseFloat(value1);
+			var duration = Std.parseFloat(value2);
+			
+			zoom = Math.isNaN(zoom) ? 1 : zoom;
+			duration = Math.isNaN(duration) ? 0 : Math.abs(duration);
+			
+			if (duration == 0){
+				customZoom = zoom;
+			}else{
+				lastTween = FlxTween.num(
+					customZoom, 
+					zoom, 
+					duration, 
+					{
+						ease: FlxEase.quadInOut, 
+						onUpdate: function(twn){
+							customZoom = twn.value;
+						},
+						onComplete: function(wtf){
+							customZoom = zoom;
+						}
+					}
+				);
+	
+				game.modchartTweens.set("hammerheadTweenZoom", lastTween);
+			}
+		case "Center Camera":	
+			if (value1 == "true"){
+				centered = true;
+				customCamera.set(0.5*(dadCam.x+bfCam.x), 0.5*(dadCam.y+bfCam.y));
+				game.addCameraPoint(customCamera);
+			}else{
+				centered = false;
+				game.cameraPoints.remove(customCamera);
+			}
+
+		case "Play Animation":
+			if (value1 == "laugh"){
+				customCamera.set(bfCam.x+115, bfCam.y+40);
+				game.addCameraPoint(customCamera);
+			}	
+		case "Change Luigi":
+			game.hud.iconP2.changeIcon("mario-and-luigi2");
+	}
+}
+
+
+////
+var twnN = 0;
+function addTwn(twn){
+	twnN++;
+	game.modchartTweens.set(scriptName + twnN, twn);
+};
+
+//
+var cam = [game.camOverlay];
+
+var lef = new FlxSprite().makeGraphic(1, 1, 0xFF000000);
+lef.cameras = cam;
+add(lef);
+
+var rig = new FlxSprite().makeGraphic(1, 1, 0xFF000000);
+rig.cameras = cam;
+add(rig);
+
+var top = new FlxSprite().makeGraphic(1, 1, 0xFF000000);
+top.cameras = cam;
+add(top);
+
+var bot = new FlxSprite().makeGraphic(1, 1, 0xFF000000);
+bot.cameras = cam;
+add(bot);
+
+var mid = new FlxSprite().loadGraphic(Paths.image("mwcircletransition"));
+mid.cameras = cam;
+mid.screenCenter();
+add(mid);
+
+var sX = -92;
+var sY = -373;
+var sS = 1465;
+
+function doCircleTween(eX, eY, eS, dur, easeFunc){
+	var easeFunc = easeFunc != null ? easeFunc : FlxEase.linear;
+	var sX = mid.x;
+	var sY = mid.y;
+	var sS = mid.width;
+
+	addTwn(FlxTween.num(0, 1, dur, {
+		ease: FlxEase.quadOut, 
+		onUpdate: function(twn){
+			mid.setPosition(FlxMath.lerp(sX, eX, twn.value), FlxMath.lerp(sY, eY, twn.value));
+			var size = FlxMath.lerp(sS, eS, twn.value);
+			mid.setGraphicSize(size, size);
+			mid.updateHitbox();
+			
+			updateBullshit();
+		}
+	}));
+}
+
+function updateBullshit(){
+	var mX = mid.x;
+	var mY = mid.y;
+	
+	// still kinda flawed but it'll work fine for now
+	var lH = 0;
+	if (mY >= 0 && mY <= FlxG.height){
+		lef.y = 0;
+		lH = FlxG.height;
+	}else if (mY < 0){
+		lef.y = mY;
+		lH = FlxG.height - mY;
+	}
+	lef.x = (mX - FlxG.width);
+	lef.setGraphicSize(FlxG.width, lH);
+	lef.updateHitbox();      
+	
+	top.setPosition(mX, mY < 0 ? mY: 0);
+	top.setGraphicSize(mid.width + 1, Math.abs(mY) + 1);
+	top.updateHitbox();
+	
+	bot.setPosition(mX, mY + mid.height);
+	bot.setGraphicSize(mid.width + 1, FlxG.height);
+	bot.updateHitbox();
+	
+	rig.setPosition(mX + mid.width, 0); 
+	rig.setGraphicSize(FlxG.width, FlxG.height);
+	rig.updateHitbox();
+}
+
+function onBeatHit(){
+	switch(curBeat){
+		case 656:
+			addTwn(FlxTween.tween(game.camHUD, {alpha: 0}, 1.8, {ease: FlxEase.expoIn}));	
+		case 688:
+			doCircleTween(0, 720/2-1280/2, 1280, 0.6, FlxEase.circInOut);
+		case 692:
+			doCircleTween(530, 220, 500, 0.9, FlxEase.circOut);
+		case 697:
+			addTwn(FlxTween.color(mid, 0.3, 0xFFFFFFFF, 0xFF000000, {ease: FlxEase.quadIn}));
+		case 700:
+			doCircleTween(560 + (460/2), 220 + (460/2), 0, 1, FlxEase.circOut);
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [0,0],
+			"anim": "eat",
+			"fps": 16,
+			"name": "dialouge",
+			"indices": [0,1,2,3,4,5,6]
+		},
+		{
+			"loop": false,
+			"offsets": [0,0],
+			"anim": "this",
+			"fps": 16,
+			"name": "dialouge",
+			"indices": [7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/scourge/eat_this",
+	"position": [
+		-241,
+		-714
+	],
+	"healthicon": "scourge",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		175,
+		80
+	],
+	"camera_position": [
+		-95,
+		5
+	],
+	"sing_duration": 6.1,
+	"scale": 0.9
+}

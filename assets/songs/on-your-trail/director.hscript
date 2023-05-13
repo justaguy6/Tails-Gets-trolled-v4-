@@ -1,0 +1,460 @@
+var setSectionCamera;
+
+var marioField = newPlayField();
+var poriField = game.playerField;
+var shadowField = game.dadField;
+
+var cuscamX;
+var cuscamY;
+
+function onCountdownStarted()
+{
+	var queueEase = game.modManager.queueEase;
+	var queueSet = game.modManager.queueSet;
+	
+	var dMul = ClientPrefs.downScroll ? -1 : 1;
+	
+	queueEase(640, 656, 'alpha', 0.5, 'quadOut', 0);
+	queueEase(640, 656, 'transformZ', -300, 'quadOut', 0);
+	queueEase(640, 656, 'opponentSwap', -0.25, 'quadOut', 0);
+
+	queueEase(878, 884, 'alpha', 0, 'circOut', 0);
+	queueEase(878, 884, 'transformZ', 0, 'circOut', 0);
+	queueEase(878, 884, 'opponentSwap',-0, 'circOut', 0);
+
+	queueEase(904, 904 + 16, 'alpha', 0.5, 'quadOut', 0);
+	queueEase(904, 904 + 16, 'transformZ', -300, 'quadOut', 0);
+	queueEase(904, 904 + 16, 'opponentSwap', -0.25, 'quadOut', 0);
+	// bye pori
+ 	queueEase(1024, 1072, 'confusionOffset', 360, 'quadOut', 0);
+	queueEase(1024, 1072, 'opponentSwap', -1, 'quadOut', 0);
+	queueEase(1024, 1072, 'alpha', 1, 'quadOut', 0);
+
+	if(!disableModcharts){
+		for(idx in 0...4){
+			queueEase(1140 + (idx * 0.25), 1143.5 + (idx * 0.25), 'transform' + idx + 'Y', -120 * dMul, 'quadOut', 1);
+			queueSet(1144 + (idx * 0.25), 'transform' + idx + 'Y', -360 * dMul, 1);
+			queueEase(1144 + (idx * 0.25), 1152 + (idx * 0.25), 'transform' + idx + 'Y', 0, 'elasticOut', 1);
+		}
+	}
+
+	queueEase(1212, 1212 + 16, 'transformX', (FlxG.width * 0.5 - Note.swagWidth * 2 - 100) - 56, 'quadOut', 2); 
+}
+
+var poriDot;
+function onCreatePost()
+{
+
+	hintPopup = new FlxSprite();
+	hintPopup.camera = game.camHUD;
+	hintPopup.frames = Paths.getSparrowAtlas(game.playOpponent ? "hint-popup/on-your-trail-alt" : "hint-popup/on-your-trail");
+	hintPopup.animation.addByIndices("popin", "oyt-hint", [0,1,2], "", 15, false);
+	hintPopup.animation.addByIndices("loop", "oyt-hint", [3,4,5,6], "", 24, true);
+	hintPopup.animation.addByIndices("popout", "oyt-hint", [7,8,9], "", 15, false);
+	hintPopup.animation.finishCallback = (name)->{
+		if (name == "popin") hintPopup.animation.play("loop");
+		if (name == "popout") game.remove(hintPopup).destroy();
+	};
+	hintPopup.visible = false;
+	hintPopup.screenCenter();
+	hintPopup.scale.set(1.2, 1.2);
+	game.add(hintPopup);
+
+
+
+
+	//// gay over
+	GameOverSubstate.genericName = "characters/gameover/blackout";
+	GameOverSubstate.genericSound = "blackoutGameOver";
+	GameOverSubstate.genericMusic = "gameOver";
+
+	//
+	game.addCharacterToList("pori",0);
+	game.addCharacterToList("pori-front",0);
+	//
+	game.addCharacterToList("traildow-front",1);
+	game.addCharacterToList("traildow-dialogue",1);
+
+	game.boyfriendGroup.x += 450;
+	
+	// mariooo
+	game.gfGroup.x = (game.dadGroup.x + game.boyfriendGroup.x)*0.5;
+	game.gfGroup.y = game.dadGroup.y + 1000;
+	game.gf.scrollFactor.set(1.4, 1.2);
+	
+	// layer mario over everything else
+	game.remove(game.gfGroup, true);
+	game.add(game.gfGroup);
+	
+	pori = game.boyfriend;
+	shadow = game.dad;
+	mario = game.gf;
+	
+	poriDot = new FlxSprite(game.boyfriendGroup.x -439, game.boyfriendGroup.y - 811, Paths.image("characters/pori/doutline"));
+	poriDot.visible = false;
+	game.add(poriDot);
+	
+	////
+	setSectionCamera = game.sectionCamera.set;
+	marioField.characters = [mario];
+	
+	var toMove:Array<Note> = [];
+    for(queue in shadowField.noteQueue){
+		for(note in queue){
+			if(note.noteType == 'Pori'){ 
+				toMove.push(note);
+			}
+		}
+	}
+
+	for(note in toMove){
+		shadowField.unqueue(note);
+		poriField.queue(note);
+	}
+
+	var toMove:Array<Note> = [];
+    for(queue in shadowField.noteQueue){
+		for(note in queue){
+			if(isMarioSexion(note.strumTime) && note.noteType != 'Pori' ){ 
+				toMove.push(note);
+			}
+		}
+	}
+
+	for(note in toMove){
+		shadowField.unqueue(note);
+		marioField.queue(note);
+	}
+
+	var toMove:Array<Note> = [];
+    for(queue in poriField.noteQueue){
+		for(note in queue){
+			if(isMarioSexion(note.strumTime) && note.noteType != 'Pori'){ 
+				toMove.push(note);
+			}
+		}
+	}
+
+	for(note in toMove){
+		poriField.unqueue(note);
+		shadowField.queue(note);
+	}
+
+    for(queue in poriField.noteQueue){
+		for(note in queue){
+			note.gfNote = false;
+		}
+	}
+	
+}
+
+function isMarioSexion(time:Float){
+	for(event in game.eventNotes){ // SHOULD be sorted by time by now, so this should work fine
+		if(event.strumTime <= time){
+			if(event.value1=='marioPopIn')
+				return true;
+		}
+	}
+
+	return false;
+}
+
+var popUpAppear = false;
+function opponentNoteHit(note, field){
+	if (popUpAppear){
+		popUpAppear = false;
+		
+		hintPopup.visible = true;
+		hintPopup.animation.play("popin");
+		new FlxTimer().start(crochet/1000*4, (tmr)->{
+			//tmr.destroy();
+			hintPopup.animation.play("popout");
+		});
+	}
+}
+
+var marioHere = false;
+function onEvent(name, value1, value2){
+	if (name != "Song Event")
+		return;
+	
+	switch (value1)
+	{
+		case "marioPopIn":
+			marioHere = true;
+			marioField.fadeIn(false);
+			
+			game.triggerEventNote("Change Character", "dad", "traildow-front");
+			game.triggerEventNote("Change Character", "bf", "pori-front");
+
+			shadow = game.dad;
+			pori = game.boyfriend;
+
+			cuscamX = 775; //582 - 75;
+			cuscamY = 368 - 72 + 10;
+			
+			game.defaultCamZoom -= 0.1;
+
+			// opponent mode
+			marioField.autoPlayed = shadowField.autoPlayed || botPlay;
+			marioField.isPlayer = shadowField.isPlayer;
+			marioField.noteHitCallback = shadowField.noteHitCallback;
+
+			poriField.autoPlayed = true;
+			poriField.isPlayer = false;
+			poriField.noteHitCallback = game.opponentNoteHit;
+
+			shadowField.autoPlayed = !shadowField.autoPlayed || botPlay;
+			shadowField.isPlayer = !shadowField.isPlayer;
+			shadowField.noteHitCallback = shadowField.isPlayer ? game.goodNoteHit : game.opponentNoteHit;
+			
+			shadow.idleWhenHold = !shadowField.isPlayer;
+
+			FlxTween.tween(
+				game.gfGroup,
+				{y: game.dadGroup.y + 345}, 
+				1.3, 
+				{
+					ease: FlxEase.quadOut,
+					onUpdate: function(twn){
+						cusCamY = 368 + (650*twn.progress);
+					}
+				}
+			);
+
+			FlxTween.tween(game.healthBar, {alpha: 0, y: game.healthBar.y + ClientPrefs.downScroll?-100:100}, 0.5);
+			game.healthBar.visible = false;
+			
+			if (!game.playOpponent) // fuck it ill do the opponent mode popup later
+				popUpAppear = true;
+			else{
+				popUpAppear = false;
+		
+				hintPopup.visible = true;
+				hintPopup.animation.play("popin");
+				new FlxTimer().start(crochet/1000*4, (tmr)->{
+					//tmr.destroy();
+					hintPopup.animation.play("popout");
+				});
+			}
+				
+			if(ClientPrefs.downScroll){
+				FlxTween.tween(game.scoreTxt, {y: game.scoreTxt.y - 80}, 0.5);
+			}
+			
+		case "poricam":	
+			
+			if (value2 == "dialogue"){
+				game.defaultCamZoom = 1;
+				cuscamX = 1350;
+				cuscamY = 150;
+		
+				game.triggerEventNote("Change Character", "bf", "pori-front");
+				pori = game.boyfriend;
+				pori.playAnim("dialogue", true);
+				pori.specialAnim = true;
+			}else if (value2 == "fuckhesgone"){
+				trace("FUCK he's gone");
+				game.cameraSpeed = 3;
+				cuscamX = 1300;
+				
+				var repeats = 3 * 4;
+				script.set("onStepHit", ()->{
+					poriDot.visible = ! poriDot.visible;
+					
+					if (repeats-- <= 0){
+						script.set("onStepHit", null);
+						poriDot.visible = false;
+					}
+				});
+				
+			}else{
+				cuscamX = 1246;
+			}
+		case "shadowcam":
+			game.defaultCamZoom = game.stage.stageData.defaultZoom;
+		
+			cuscamX = 129;
+			cuscamY = 236;
+			
+			pori.skipDance = true;
+			FlxTween.tween(
+				pori,
+				{x: pori.x + 360, angle: 15}, 
+				3.6, 
+				{
+					ease: FlxEase.quadIn,
+					onComplete: function(twn)
+					{
+						pori.visible = false;
+					}
+				}
+			);
+		case "mariocam":
+			cuscamX = 582 - 75;
+			cuscamY = (236+368)*0.5;
+		case "centercam":
+			cuscamX = 775;
+			cuscamY = 236;
+		
+		case "midshadow":
+			cuscamX = 775 - 100;
+			cuscamY = (236+368)*0.5;
+		case "midmario":
+			cuscamX = 775;
+			cuscamY = (236+368)*0.5 + 10;		
+		case "midpori":
+			cuscamX = 775 + 250;
+			cuscamY = (236+368)*0.5;
+			game.triggerEventNote("Change Character", "bf", "pori");
+			pori = game.boyfriend;
+
+		case "resetcam":
+			cuscamX = null;
+			cuscamY = null;
+		case "shadowLookAtMario":
+			/* unused ;-;
+
+			*/
+		case "whoSaidThat":
+			game.triggerEventNote("Change Character", "dad", "traildow-dialogue");
+			game.dad.playAnim("whosaidthat");
+			game.dad.specialAnim = true;
+			
+			//// this is insane
+			var dad = game.dad;
+			dad.characterScript.set("onDance", function(){
+				game.triggerEventNote("Change Character", "dad", "traildow-front");
+				game.dad.idleSuffix = "";
+				dad.characterScript.set("onDance", null);
+			});
+		case "shadowWhat":
+			game.triggerEventNote("Change Character", "dad", "traildow-dialogue");
+			game.dad.playAnim("what");
+			game.dad.voicelining = true;
+			
+			game.cameraSpeed = 3;
+			
+			cuscamX = 129;
+			cuscamY = 200;
+			
+		case "shadowWhatIdle":
+			game.dad.voicelining = false;
+			game.dad.idleSuffix = "-what";
+			game.dad.dance();
+			
+			game.cameraSpeed = 1;
+			
+		//case "shadowWhatIdlePost":
+			//game.dad.idleSuffix = "-what-post";
+		case "youdontknow":
+			cuscamX = 0;
+			cuscamY = 120;
+			
+			game.triggerEventNote("Change Character", "dad", "traildow-dialogue");
+			game.triggerEventNote("Play Animation", "thestory", "dad");
+			
+			game.defaultCamZoom = 1.25;
+		case "marioShoot":
+			mario.playAnim("shoot", true);
+			mario.specialAnim = true;
+		case "ibeliveyou":
+			mario.playAnim("believe", true);
+			mario.specialAnim = true;	
+
+			mario.idleSuffix = "-believe";
+			
+			shadow.dance();
+			shadow.specialAnim = true;
+		case "doflash":
+			game.camGame.zoom += 0.1;
+			
+			if (flashingLights && false){
+				if (value2 == "1")
+					game.camOverlay.flash(0xAAFFFFFF, 0.6, null, true);
+				else
+					game.camOverlay.flash(0xEEFFFFFF, 0.6, null, true);
+			}
+		case "flashin":
+			flashTween = FlxTween.num(
+				0, 
+				1, 
+				0.15, 
+				{
+					ease: FlxEase.sineOut,
+					onUpdate: function(twn){
+						game.camHUD.bgColor = FlxColor.fromRGBFloat(1, 1, 1, twn.percent);
+					}
+				}
+			);
+		case "flashout":
+			game.triggerEventNote("Change Character", "dad", "traildow-front");
+		
+			flashTween.cancel();
+			FlxTween.num(0, 1, 1.2, {
+				ease: FlxEase.circIn,
+				onUpdate: function(twn){
+				game.camHUD.bgColor = FlxColor.fromRGBFloat(1, 1, 1, 1-twn.percent);
+			}});
+	}
+}
+
+
+function preModifierRegister(){
+	marioField.autoPlayed = true;
+	marioField.isPlayer = false;
+	marioField.noteHitCallback = game.opponentHitCallback;
+	marioField.fadeIn(true);
+	
+
+	marioField.cameras = [game.camHUD];
+}
+
+function postModifierRegister(){
+	for(strum in marioField.strumNotes){
+		FlxTween.cancelTweensOf(strum);
+		strum.alpha = 0;
+	}
+	marioField.modNumber = 2;
+	
+	modManager.setValue("reverse", 1, 2);
+}
+
+function onMoveCamera(who){
+	if(marioHere && (who == 'bf' || who == 'dad')){
+		if(who == 'bf'){
+			trace("to shadow");
+			game.moveCamera(shadow);
+		}else if(who == 'dad'){
+			trace("to mayrio");
+			game.moveCamera(mario);
+		}
+		return Function_Stop;
+	}
+}
+
+function onUpdate(elapsed)
+{
+	var camX;
+	var camY;
+	
+	switch (game.focusedChar.curCharacter){
+		case "traildow":
+			camX = 129;
+			camY = 236;
+		case "traildow-front":
+			camX = 362;
+			camY = (236+368)*0.5 - 20;
+		case "trailrio":
+			camX = 482;
+			camY = (236+368)*0.5;
+		case "pori":
+			camX = 1246;
+			camY = 236;
+	}
+	
+	setSectionCamera(
+		(cuscamX == null) ? camX : cuscamX,
+		(cuscamY == null) ? camY : cuscamY
+	);
+} 

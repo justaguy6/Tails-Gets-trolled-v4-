@@ -1,0 +1,72 @@
+// Smoke
+var spos1 = -560;
+var spos2 = 1100;
+
+var smoke1 = new FlxSprite(-560 - 1100, 575);
+smoke1.frames = Paths.getSparrowAtlas("stage-high/smoke");
+smoke1.animation.addByPrefix("zaza", "Symbol 1 instance 1", 8, true);
+smoke1.animation.play("zaza");
+smoke1.scale.set(1.25, 1.5);
+smoke1.alpha = 0;
+
+var smoke2 = new FlxSprite(1100 + 1100, 625);
+smoke2.frames = Paths.getSparrowAtlas("stage-high/smoke");
+smoke2.animation.addByPrefix("zaza", "Symbol 1 instance 1", 8, true);
+smoke2.animation.play("zaza");
+smoke2.scale.set(1.5, 1.75);
+smoke2.alpha = 0;
+
+var smokeOverlay = new FlxSprite().makeGraphic(1,1, -8355712);
+smokeOverlay.scale.set(1280*2, 720*2);
+smokeOverlay.alpha = 0;
+
+function onCreatePost(){
+	game.add(smoke1);
+	game.add(smoke2);
+	
+	game.add(smokeOverlay);
+	
+	// this way they wont get affected by the shader
+	smokeOverlay.cameras = [game.camOverlay];
+	game.scoreTxt.cameras = [game.camOverlay];
+	//game.timeTxt.cameras = [game.camOverlay];
+}
+
+function onCountdownStarted(){
+
+	
+	game.camFollowPos.x = 570;
+	game.camFollowPos.y -= 0.8*(FlxG.camera.height / FlxG.camera.zoom);
+}
+/*
+function onSongStart()
+{
+	game.triggerEventNote("Center Camera", "false", "");
+}
+*/
+
+// Smonk
+function onStepHit()
+{
+	if (curStep == 1152){
+		FlxTween.tween(smokeOverlay, {alpha: 0.35}, (Conductor.stepCrochet * 64 / 1000), {ease: FlxEase.quartInOut});
+		
+		FlxTween.tween(smoke1, {x: spos1}, (Conductor.stepCrochet * 64 / 1000), {ease: FlxEase.quartOut});
+		FlxTween.tween(smoke2, {x: spos2}, (Conductor.stepCrochet * 64 / 1000), {ease: FlxEase.quartOut});
+		
+		var justHowHighAreYou = game.variables.get("justHowHighAreYou");
+		
+		FlxTween.num(
+			justHowHighAreYou == null ? 25 : justHowHighAreYou, 
+			100, 
+			(1220 - 1152) * (Conductor.stepCrochet / 1000), 
+			{ease: FlxEase.quadOut, onUpdate: function(twn)
+				{
+					smoke1.alpha = twn.value * 0.25;
+					smoke2.alpha = twn.value * 0.25;
+					game.variables.set("justHowHighAreYou", twn.value);
+				}
+			}
+		);
+	}
+}

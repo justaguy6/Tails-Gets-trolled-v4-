@@ -1,0 +1,286 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"fps": 24,
+			"anim": "idle",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			],
+			"name": "dark sonic mad idle"
+		},
+		{
+			"offsets": [
+				87,
+				-84
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [
+				4,
+				5,
+				6,
+				7
+			],
+			"name": "dark sonic mad left"
+		},
+		{
+			"offsets": [
+				30,
+				-61
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [
+				4,
+				5,
+				6,
+				7
+			],
+			"name": "dark sonic mad down"
+		},
+		{
+			"offsets": [
+				10,
+				-21
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [
+				4,
+				5,
+				6,
+				7
+			],
+			"name": "dark sonic mad up"
+		},
+		{
+			"offsets": [
+				-50,
+				-61
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [
+				4,
+				5,
+				6,
+				7
+			],
+			"name": "dark sonic mad right"
+		},
+		{
+			"loop": true,
+			"offsets": [
+				0,
+				0
+			],
+			"fps": 24,
+			"anim": "idle-loop",
+			"indices": [
+				10,
+				11,
+				12,
+				13,
+				14,
+				15
+			],
+			"name": "dark sonic mad idle"
+		},
+		{
+			"offsets": [
+				87,
+				-84
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singLEFT-loop",
+			"indices": [
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			],
+			"name": "dark sonic mad left"
+		},
+		{
+			"offsets": [
+				30,
+				-61
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singDOWN-loop",
+			"indices": [
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			],
+			"name": "dark sonic mad down"
+		},
+		{
+			"offsets": [
+				10,
+				-21
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singUP-loop",
+			"indices": [
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			],
+			"name": "dark sonic mad up"
+		},
+		{
+			"offsets": [
+				-50,
+				-61
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singRIGHT-loop",
+			"indices": [
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			],
+			"name": "dark sonic mad right"
+		},
+		{
+			"offsets": [
+				87,
+				-84
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singLEFT-sus",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				53
+			],
+			"name": "dark sonic mad left"
+		},
+		{
+			"offsets": [
+				30,
+				-61
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singDOWN-sus",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			],
+			"name": "dark sonic mad down"
+		},
+		{
+			"offsets": [
+				10,
+				-21
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singUP-sus",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			],
+			"name": "dark sonic mad up"
+		},
+		{
+			"offsets": [
+				-50,
+				-61
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singRIGHT-sus",
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			],
+			"name": "dark sonic mad right"
+		},
+		{
+			"offsets": [
+				-8,
+				18
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "transform",
+			"indices": [],
+			"name": "dark sonic mad transform"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/dark-sonic/mad",
+	"position": [
+		-320,
+		-875
+	],
+	"healthicon": "dark-sonic",
+	"flip_x": false,
+	"healthbar_colors": [
+		22,
+		27,
+		81
+	],
+	"camera_position": [
+		-92,
+		150
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

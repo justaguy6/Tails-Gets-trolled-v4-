@@ -1,0 +1,183 @@
+/*
+game.cpuControlled = true;
+game.camHUD.alpha = 0;
+*/
+
+/*
+	Every note is an array that stores data like this:
+		0: Strum time. (In milliseconds)
+		1: The note data.
+			(0: LEFT, 1: DOWN, 2: UP, 3, RIGHT) Player notes if the current section is a mustHitSection
+			(4: LEFT, 5: DOWN, 6: UP, 7, RIGHT) Opponent notes if the current section is a mustHitSection
+			If the note data is negative then Psych Engine treats the note as a GF note????
+		2: The sustain length.
+		3: The note type.
+*/
+
+// RICO STOP USING SLURS IN THE CODE
+//// chart bullshit
+var jason = Song.loadFromJson("trolls", "all-hail-the-king");
+var trollNotes = [];
+
+for (section in jason.notes){
+	for (note in section.sectionNotes)
+		trollNotes.push(note);
+}
+trollNotes.sort(
+	function(a, b){
+		return (a[0] == b[0]) ? 0 : (a[0] > b[0] ? 1 : -1);
+	}
+);
+
+//// character crap
+var toothdk = new Character(-200, 0, "dumbfucker-toothdcay");
+toothdk.x += toothdk.positionArray[0];
+toothdk.y += toothdk.positionArray[1];
+
+var conhead = new Character(200, 0, "dumbfucker-headedmotherfucker");
+conhead.x += conhead.positionArray[0];
+conhead.y += conhead.positionArray[1];
+
+//// popup shit
+var hintPopup;
+
+function onCreatePost(){
+	game.gfGroup.add(toothdk);
+	game.gfGroup.add(conhead);
+	
+	//game.zoomEveryBeat = 0;
+	
+	game.dad.danceEveryNumBeats = 0;
+	game.boyfriend.danceEveryNumBeats = 0;
+	
+	////
+	hintPopup = new FlxSprite();
+	hintPopup.frames = Paths.getSparrowAtlas("hint-popup/all-hail-the-king");
+	hintPopup.animation.addByIndices("popin", "ahtk-hint", [0,1,2], "", 15, false);
+	hintPopup.animation.addByIndices("loop", "ahtk-hint", [3,4,5,6], "", 24, true);
+	hintPopup.animation.addByIndices("popout", "ahtk-hint", [7,8,9], "", 15, false);
+	hintPopup.animation.finishCallback = (name)->{
+		if (name == "popin") hintPopup.animation.play("loop");
+		if (name == "popout") game.remove(hintPopup).destroy();
+	};
+	hintPopup.visible = false;
+	
+	//hintPopup.camera = game.camHUD;
+	hintPopup.scrollFactor.set();
+	var scaleShit = 1/game.stage.stageData.defaultZoom;
+	hintPopup.scale.set(scaleShit,scaleShit);
+	
+	hintPopup.alpha = 0.95;
+	
+	hintPopup.screenCenter();
+	hintPopup.offset.y = (ClientPrefs.downScroll ? 30 : -30) * scaleShit;
+	hintPopup.offset.x = (game.playOpponent ? 325 : -325) * scaleShit;
+	
+
+	game.add(hintPopup);
+}
+
+// maybe rewrite this to use invisible playfields instead lol
+
+var singAnims = ["singLEFT", "singDOWN", "singUP", "singRIGHT"];
+function onHitNote(note){
+	var char = conhead;
+	var noteData = note[1];
+	
+	if (noteData > 3)
+		noteData -= 4;
+	else
+		char = toothdk;
+	
+	char.playAnim(singAnims[noteData], true);
+	var holdDuration = (Conductor.stepCrochet * 4);
+	char.animTimer = ((note[2] + holdDuration) * 0.001); // ms to s
+
+	//trace("hit!", note[1], note[0], note[2]);
+}
+
+importClass("StringTools");
+function doCharDance(char){
+	if (
+		char.animation.curAnim != null
+		&& !StringTools.startsWith(char.animation.curAnim.name, 'sing')
+		&& !char.stunned)
+	{
+		char.dance();
+	}
+}
+
+function onBeatHit(){
+	if (curBeat % 4 == 2){
+		conhead.dance();
+		toothdk.dance();
+			
+		doCharDance(game.dad);
+		doCharDance(game.boyfriend);
+		
+		/*
+		if (game.camZooming)
+			game.triggerEventNote("Add Camera Zoom", "", "");
+		*/
+	}
+};
+function onCountdownTick(swag, tmr){
+	if (conhead != null && tmr.loopsLeft % 2 == 0)
+		conhead.dance();
+	if (toothdk != null && tmr.loopsLeft % 2 == 0)
+		toothdk.dance();
+	if (game.dad != null && tmr.loopsLeft % 2 == 0)
+		game.dad.dance();
+	if (game.boyfriend != null && tmr.loopsLeft % 2 == 0)
+		game.boyfriend.dance();
+}
+
+function onUpdate(){
+	for (note in trollNotes){
+		if (Conductor.songPosition >= note[0]){
+			trollNotes.remove(note);
+			onHitNote(note);
+		}else
+			break;
+	}
+}
+
+function onCountdownStarted()
+{
+	game.modManager.queueEase(2144, 2144+16, "alpha", 1, "circOut");
+}
+
+function onEvent(_, _, val2)
+{
+	if (val2 == "blackout"){
+		game.camOverlay.bgColor = 0xFF000000;
+	
+		/*
+		var beat = Conductor.crochet/1000;
+		FlxTween.num(0, 1, (beat*32), {ease: FlxEase.sineOut}, (val)->{
+			game.camOverlay.bgColor = FlxColor.lerp(0x00000000, 0xFF000000, val);
+		});
+		*/
+	}
+}
+
+////
+function noteHit(note, field){
+	if (note.noteType == "Fire Note")
+	{
+		hintPopup.visible = true;
+		hintPopup.animation.play("popin");
+		new FlxTimer().start(Conductor.crochet/1000 * 8, ()->{
+			hintPopup.animation.play("popout");
+		});
+		
+		// idfk which one will get called
+		script.set("goodNoteHit", null);
+		script.set("noteMiss", null);
+		script.set("noteHit", null);
+	}
+}
+
+// idfk which one will get called
+script.set("goodNoteHit", noteHit);
+script.set("noteMiss", noteHit);

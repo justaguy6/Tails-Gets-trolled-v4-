@@ -1,0 +1,17 @@
+function setupNote(note:Note){
+	note.canQuant = false;
+	
+	note.ratingHealth.clear();
+	
+	note.usesDefaultColours = false;
+	note.colorSwap.hue = 0;
+	note.colorSwap.saturation = 0;
+	note.colorSwap.brightness = 0;
+	
+	note.noteSplashHue = 0;
+	note.noteSplashSat = 0;
+	note.noteSplashBrt = 0;
+	
+	note.texture = "DARKNOTE_assets";
+	note.noteSplashTexture = "DARKnoteSplashes";
+}

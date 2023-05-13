@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="goomba.png">
+	<!-- Created with Adobe Animate version 18.0.1.115 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="goombo0000" x="0" y="0" width="134" height="134" frameX="-3" frameY="-11" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0001" x="0" y="0" width="134" height="134" frameX="-3" frameY="-11" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0002" x="134" y="0" width="133" height="137" frameX="-3" frameY="-8" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0003" x="134" y="0" width="133" height="137" frameX="-3" frameY="-8" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0004" x="267" y="0" width="127" height="142" frameX="-4" frameY="-3" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0005" x="267" y="0" width="127" height="142" frameX="-4" frameY="-3" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0006" x="394" y="0" width="129" height="145" frameX="-1" frameY="0" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0007" x="394" y="0" width="129" height="145" frameX="-1" frameY="0" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0008" x="523" y="0" width="129" height="145" frameX="0" frameY="0" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0009" x="523" y="0" width="129" height="145" frameX="0" frameY="0" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0010" x="523" y="0" width="129" height="145" frameX="0" frameY="0" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0011" x="523" y="0" width="129" height="145" frameX="0" frameY="0" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0012" x="523" y="0" width="129" height="145" frameX="0" frameY="0" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0013" x="523" y="0" width="129" height="145" frameX="0" frameY="0" frameWidth="137" frameHeight="145"/>
+	<SubTexture name="goombo0014" x="523" y="0" width="129" height="145" frameX="0" frameY="0" frameWidth="137" frameHeight="145"/>
+</TextureAtlas>

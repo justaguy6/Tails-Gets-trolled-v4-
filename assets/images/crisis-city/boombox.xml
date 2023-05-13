@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="boombox.png">
+	<!-- Created with Adobe Animate version 20.0.3.25487 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="boombox0000" x="743" y="0" width="355" height="216" frameX="-6" frameY="0" frameWidth="385" frameHeight="216"/>
+	<SubTexture name="boombox0001" x="743" y="0" width="355" height="216" frameX="-6" frameY="0" frameWidth="385" frameHeight="216"/>
+	<SubTexture name="boombox0002" x="0" y="0" width="385" height="216"/>
+	<SubTexture name="boombox0003" x="0" y="0" width="385" height="216"/>
+	<SubTexture name="boombox0004" x="0" y="0" width="385" height="216"/>
+	<SubTexture name="boombox0005" x="385" y="0" width="358" height="216" frameX="-5" frameY="0" frameWidth="385" frameHeight="216"/>
+	<SubTexture name="boombox0006" x="385" y="0" width="358" height="216" frameX="-5" frameY="0" frameWidth="385" frameHeight="216"/>
+</TextureAtlas>

@@ -1,0 +1,120 @@
+importClass("flixel.tweens.FlxEase");
+
+var defaultZoom = game.stage.stageData.defaultZoom;
+var camZoomingMult = game.camZoomingMult;
+game.camHUD.alpha = 0;
+
+var lastStep = 0;
+
+function firstSet(){
+    switch (curStep%16){
+        case 0:
+            game.camGame.zoom += 0.015 * camZoomingMult;
+			game.camHUD.zoom += 0.03 * camZoomingMult;
+        case 4:
+            game.camGame.zoom += 0.0125 * camZoomingMult;
+			game.camHUD.zoom += 0.0275 * camZoomingMult;
+        case 12:
+            game.camGame.zoom += 0.015 * camZoomingMult;
+			game.camHUD.zoom += 0.03 * camZoomingMult;
+    }
+}
+function secondSet(){
+    switch (curStep % 16)
+    {
+        case 0:
+            game.camGame.zoom += 0.015 * camZoomingMult;
+			game.camHUD.zoom += 0.03 * camZoomingMult;
+        case 4:
+            game.camGame.zoom += 0.0125 * camZoomingMult;
+			game.camHUD.zoom += 0.0275 * camZoomingMult;
+        case 10:
+            game.camGame.zoom += 0.005 * camZoomingMult;
+            game.camHUD.zoom += 0.01 * camZoomingMult;
+        case 12:
+            game.camGame.zoom += 0.015 * camZoomingMult;
+            game.camHUD.zoom += 0.025 * camZoomingMult;
+    }
+}
+
+script.set("sectionNumber", 0); // UGH
+
+function onStepHit()
+{
+    if (curStep <= lastStep)
+        return;
+    
+    switch(curStep){
+        case 26:
+            game.camZooming = true;
+            game.camGame.zoom += 0.05;
+        case 28:
+            game.camGame.zoom += 0.15;
+        case 30:
+            game.camHUD.alpha = 1;
+            game.camHUD.zoom = 2;
+
+            game.zoomEveryBeat = 0;
+    }
+
+    if (curStep < 30)
+        return;
+    else if (lastStep < 30){
+        game.camHUD.alpha = 1;
+        game.zoomEveryBeat = 0;
+    }
+
+    /*
+    9 17 //(0 4 8 12)
+    10 // (0 4 ?10 12)
+    25 // first doesnt
+    33 // halts
+    34 // new begin 0 4 10 12
+    41 // pause half resume last with beats 10 12
+    48 // same but beat change on 14
+    49 // every curbeat
+    50 // 41 again
+    56  // 48 again but step 14 is a change
+    57 // change 2 6 10 14
+    58 // every 8th step
+    74 // 34 section
+    89 // only the first beat
+    90 // suspense 0  6  12
+    105 // first step then pause
+    106 // every first step
+    123 // end
+    */
+
+    var stepSection = curStep % 16;
+
+    if (curStep == 782 || curStep == 910){ // pt 1
+        game.zoomEveryBeat = 0;
+
+        game.camGame.zoom += 0.01 * camZoomingMult;
+        game.camHUD.zoom += 0.0225 * camZoomingMult;
+    }
+
+    if (sectionNumber == 9 || sectionNumber == 17 || sectionNumber == 25){
+        game.zoomEveryBeat = 0;
+        if (curStep % 4 == 0){
+            game.camGame.zoom += 0.0075 * camZoomingMult;
+            game.camHUD.zoom += 0.015 * camZoomingMult;
+        } 
+    }else if (sectionNumber == 49 || sectionNumber == 57){ // pt 2
+        if (stepSection == 2 || stepSection == 6 || stepSection == 10 || stepSection == 14){
+            game.camGame.zoom += 0.01 * camZoomingMult;
+            game.camHUD.zoom += 0.025 * camZoomingMult;
+        }
+    }else if (sectionNumber == 89){
+        game.zoomEveryBeat = 0;
+    }else{
+        game.zoomEveryBeat = 4;       
+    }
+
+    lastStep = curStep;
+}
+
+function onUpdate(){
+    if (Conductor.songPosition > 0 && Conductor.songPosition < 1950 && inGameOver == false)
+        game.camGame.zoom = defaultZoom + .175 * FlxEase.quadIn(Conductor.songPosition / 1950);
+}

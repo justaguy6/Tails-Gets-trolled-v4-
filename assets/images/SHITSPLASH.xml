@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="SHITSPLASH.png">
+	<!-- Created with Adobe Animate version 20.0.3.25487 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="f0000" x="15" y="15" width="281" height="280"/>
+	<SubTexture name="f0001" x="861" y="426" width="142" height="146" frameX="-60" frameY="-70" frameWidth="281" frameHeight="280"/>
+	<SubTexture name="f0002" x="870" y="234" width="167" height="167" frameX="-50" frameY="-59" frameWidth="281" frameHeight="280"/>
+	<SubTexture name="f0003" x="870" y="15" width="189" height="194" frameX="-43" frameY="-46" frameWidth="281" frameHeight="280"/>
+	<SubTexture name="f0004" x="624" y="15" width="221" height="207" frameX="-28" frameY="-31" frameWidth="281" frameHeight="280"/>
+	<SubTexture name="f0005" x="598" y="318" width="238" height="240" frameX="-19" frameY="-20" frameWidth="281" frameHeight="280"/>
+	<SubTexture name="f0006" x="321" y="318" width="252" height="257" frameX="-12" frameY="-12" frameWidth="281" frameHeight="280"/>
+	<SubTexture name="f0007" x="321" y="15" width="278" height="278" frameX="-1" frameY="-1" frameWidth="281" frameHeight="280"/>
+	<SubTexture name="f0008" x="15" y="320" width="281" height="280"/>
+</TextureAtlas>

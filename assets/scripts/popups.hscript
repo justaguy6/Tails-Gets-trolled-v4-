@@ -1,0 +1,60 @@
+// if you don't like this you can just delete the script
+
+var popup;
+
+function onCreatePost()
+{
+	var graphic = Paths.image('title-cards/' + game.songName);
+	if (graphic == null){
+		trace("No title card image! Maybe add one?");
+		return script.stop();
+	}
+
+	popup = new FlxSprite().loadGraphic(graphic);
+	popup.setGraphicSize(Std.int(popup.width*.85));
+	popup.scrollFactor.set();
+	popup.cameras = [game.camHUD];
+}
+
+function onSongStart()
+{
+	var screenPos;
+	var offPos;
+	
+	var showRight = game.variables.get("titleCardOnRight") == true;
+	var titleCardYMult = game.variables.exists("titleCardYMult") ? game.variables.get("titleCardYMult") : (ClientPrefs.downScroll ? -0.75 : 0.75);
+	
+	if (game.playOpponent) showRight = !showRight;
+	
+	if (showRight){
+		offPos = FlxG.width + popup.width;
+		screenPos = FlxG.width - popup.width - 25;
+	}else{
+		offPos = -popup.width;
+		screenPos = 25;
+	}
+	
+	popup.screenCenter();
+	
+	popup.x = offPos;
+	popup.y += popup.height*titleCardYMult;
+
+	game.insert(game.members.indexOf(game.hud), popup);
+	
+	FlxTween.tween(popup, {x: screenPos}, 1.2, {
+		ease: FlxEase.quartInOut,
+		//startDelay: 1,
+		onComplete: function(twn:FlxTween)
+		{
+			FlxTween.tween(popup, {x: offPos}, 1, {
+				ease: FlxEase.quartInOut,
+				startDelay: 1.5,
+				onComplete: function(twn:FlxTween)
+				{
+					game.remove(popup);
+					popup.destroy();
+				}
+			});
+		}
+	});
+}

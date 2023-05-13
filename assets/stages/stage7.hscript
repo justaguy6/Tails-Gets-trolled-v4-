@@ -1,0 +1,15 @@
+function onLoad(stage, foreground){
+	if (!lowQuality){
+		var cave = new FlxSprite();
+		cave.loadGraphic(Paths.image("stage7/cave"));	
+		cave.scrollFactor.set(0.8, 0.75);
+		stage.add(cave);
+	}
+
+	var graphic = Paths.image("stage7/ground");
+	
+	var ground = new FlxSprite();
+	ground.loadGraphic(graphic);	
+	ground.scrollFactor.set(1, 0.95);
+	stage.add(ground);
+}

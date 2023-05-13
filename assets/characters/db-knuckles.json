@@ -1,0 +1,64 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"anim": "idle",
+			"fps": 24,
+			"name": "knuckles bg back idle",
+			"indices": []
+		},
+		{
+			"cameraOffset": [
+				0,
+				0
+			],
+			"offsets": [
+				1,
+				19
+			],
+			"loop": false,
+			"anim": "idle-crazy",
+			"fps": 24,
+			"name": "knuckles bg crazy",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-8,
+				1
+			],
+			"indices": [],
+			"fps": 24,
+			"cameraOffset": [
+				0,
+				0
+			],
+			"anim": "shoot",
+			"loop": false,
+			"name": "knuckles bg back shoot"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "stage3/knuckles bg",
+	"position": [
+		-330,
+		-870
+	],
+	"healthicon": "knuckles",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		255,
+		255
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 4,
+	"scale": 0.9
+}

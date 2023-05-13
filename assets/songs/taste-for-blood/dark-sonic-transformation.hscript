@@ -1,0 +1,75 @@
+//// Precache
+game.addCharacterToList("dark-sonic-trans", 1); // fuck this lmao
+game.addCharacterToList("dark-sonic-mad", 1);
+game.addCharacterToList("dark-sonic", 1);
+var tfbscream = Paths.sound("tfbscream");
+
+////
+var startedTransition = false;
+var doingTransition = false;
+
+var rawr:FlxSound;
+var startTime = 107690; // 10 ms 
+
+var frameRate = 1/24;
+
+function onUpdate(elapsed)
+{
+	var dad = game.dad;
+	
+	if (!startedTransition && FlxG.sound.music.time >= startTime){
+		startedTransition = true;
+		game.triggerEventNote("Change Character", "dad", "dark-sonic-trans");
+		doingTransition = true;
+		
+		dad.voicelining = true;
+		dad.heyTimer = frameRate*64;
+		dad.animTimer = frameRate*64;
+		dad.specialAnim = true;
+		dad.skipDance = true;
+		
+		dad.playAnim("singLEFT", true);
+		dad.animation.paused = true;	
+	}
+
+	if (doingTransition){
+		game.camZooming = false;
+	
+		// sync shit myself
+		var seconds = (FlxG.sound.music.time - startTime) * 0.001;
+		var frameN = Math.floor(seconds/(frameRate));
+		
+		dad.animation.name = "singLEFT";
+		dad.animation.curAnim.curFrame = frameN;
+		
+		if (rawr == null){
+			if (frameN >= 31){
+				rawr = FlxG.sound.play(tfbscream, 0.6);
+				game.gf.callOnScripts("shoot");
+			}
+		}else{ 
+			
+			if (frameN >= 65){
+				doingTransition = false;
+				game.triggerEventNote("Change Character", "dad", "dark-sonic-mad");
+			}/*else if (frameN > 31)
+				game.camGame.shake(0.001, 1);*/
+		}
+		
+		if (rawr != null)
+			rawr.time = FlxG.sound.music.time - (startTime+1500);
+	}
+}
+
+// Just in case
+function onBeatHit(){
+	if (curBeat == 371){
+		doingTransition = false;
+		game.triggerEventNote("Change Character", "dad", "dark-sonic-mad");
+	}	
+}
+
+function onGameOver()
+{
+	onUpdate = null;
+}

@@ -1,0 +1,283 @@
+importClass("flixel.tweens.FlxEase");
+
+var game = getInstance();
+
+game.addCharacterToList("pori",2);
+game.addCharacterToList("pori-front",1);
+//
+game.addCharacterToList("traildow-front",0);
+
+var pori;
+var shadow;
+var mario;
+
+function onCountdownStarted()
+{
+	var queueEase = game.modManager.queueEase;
+	var queueSet = game.modManager.queueSet;
+
+	//// Mario appears
+	
+	// hide notes
+	queueEase(646, 646 + 8, 'alpha', 1, 'quadOut', -1);
+	queueEase(646, 646 + 8, 'opponentSwap', 0.5, 'quadOut', -1);
+	
+	// Center strums
+	var quart = FlxG.width*0.25;
+	queueSet(646 + 8, 'transform'+0+"X", -quart, 1);
+	queueSet(646 + 8, 'transform'+1+"X", -quart, 1);
+	queueSet(646 + 8, 'transform'+2+"X", quart, 1);
+	queueSet(646 + 8, 'transform'+3+"X", quart, 1);	
+	
+	// voiceline is finishing, show up notes
+	queueEase(700, 700 + 8, 'alpha', 0, 'quadOut', 0);
+	queueEase(700, 700 + 8, 'alpha', 0.5, 'quadOut', 1);
+	
+	//// "He trolled your friend."
+	
+	// Move the player notes to the left (shadows side).
+	queueEase(930, 950, 'opponentSwap', 1, 'quadOut', 0);
+	
+	// Hide the opponent strums
+	queueEase(930, 930 + 4, 'alpha', 1, 'quadOut', 1);
+	var dub = FlxG.width*0.5;
+	queueEase(930, 930 + 8, 'transform'+0+'X', -dub, "quadOut", 1);
+	queueEase(930, 930 + 8, 'transform'+1+'X', -dub*0.75, "quadOut", 1);
+	queueEase(930, 930 + 8, 'transform'+2+'X', dub*0.75, "quadOut", 1);
+	queueEase(930, 930 + 8, 'transform'+3+'X', dub, "quadOut", 1);
+	
+	// Mario is singing now, slowly make the notes appear so the player doesn't get the impression that they are playing as Mario.
+	queueSet(952, 'alpha', 0, 1); // the alpha modifiers stack!!!
+	queueSet(952, 'reverse', 1, 1);
+	
+	for (i in 0...4){
+		queueSet(952, 'alpha'+i, 1, 1);
+		queueSet(952, 'transform'+i+'X', quart, 1);
+		queueSet(952, 'transform'+i+'Y', -50, 1);
+		
+		var off = i*2;
+		
+		var strt = 960 + i*2;
+		queueEase(strt, strt + 32, 'alpha'+i, 0.2, 'cubeInOut', 1);
+		queueEase(strt, strt + 32, 'transform'+i+'Y', 0, "cubeOut", 1);
+		
+		// DIE
+		off *= 0.75;
+		if (!disableModcharts){ // this is an "easy mode" and not a complete removal of modcharts
+			queueEase(1132 + off, 1142 + off, 'transform'+i+'Y', -35, "circOut", 0);
+			queueEase(1142 + off, 1144 + off, 'transform'+i+'Y', 25, "linear", 0);
+			queueEase(1144 + off, 1146 + off, 'transform'+i+'Y', 0, "circOut", 0);
+		}
+	}
+	
+	
+	// You don't know the story
+	queueEase(1312, 1324, 'alpha', 1, 'quadOut', -1);
+	queueEase(1338, 1345, 'alpha', 0, 'quadOut', -1);
+	
+	// End fade
+	queueEase(1600, 1614, 'alpha', 1, 'quadIn', -1);
+}
+
+var setSectionCamera;
+function onCreatePost()
+{
+	game.boyfriendGroup.x += 450;
+	
+	// mariooo
+	game.gfGroup.x = (game.dadGroup.x + game.boyfriendGroup.x)*0.5;
+	game.gfGroup.y = game.dadGroup.y + 1000;
+	game.gf.scrollFactor.set(1.4, 1.2);
+	
+	// layer mario over everything else
+	game.remove(game.gfGroup, true);
+	game.add(game.gfGroup);
+	
+	pori = game.boyfriend;
+	shadow = game.dad;
+	mario = game.gf;
+	
+	////
+	setSectionCamera = game.sectionCamera.set;
+}
+
+var cuscamX;
+var cuscamY;
+function onUpdate(elapsed)
+{
+	var camX;
+	var camY;
+	
+	switch (game.focusedChar.curCharacter){
+		case "traildow":
+			camX = 129;
+			camY = 236;
+		case "traildow-front":
+			camX = 362;
+			camY = (236+368)*0.5 - 20;
+		case "trailrio":
+			camX = 482;
+			camY = (236+368)*0.5;
+		case "pori":
+			camX = 1246;
+			camY = 236;
+	}
+	
+	setSectionCamera(
+		(cuscamX == null) ? camX : cuscamX,
+		(cuscamY == null) ? camY : cuscamY
+	);
+} 
+
+var flashTween;
+
+function onEvent(name, value1, value2)
+{
+	switch (value1)
+	{
+		case "mariopopin":
+			// make the player control shadow now
+			game.triggerEventNote("Change Character", "bf", "traildow-front");
+			game.triggerEventNote("Change Character", "dad", "pori-front");
+			
+			shadow = game.boyfriend;
+			pori = game.dad;
+			
+			shadow.cameraPosition[0] -= 150;
+			
+			shadow.flipX = !shadow.flipX;
+			pori.flipX = !pori.flipX;
+			
+			//
+			var oldX = game.boyfriendGroup.x;
+			game.boyfriendGroup.x = game.dadGroup.x;
+			game.dadGroup.x = oldX;
+			
+			///
+			cuscamX = 775; //582 - 75;
+			cuscamY = 368 - 72 + 10;
+			
+			game.defaultCamZoom -= 0.1;
+
+			FlxTween.tween(
+				game.gfGroup,
+				{y: game.dadGroup.y + 345}, 
+				1.3, 
+				{
+					ease: FlxEase.quadOut,
+					onUpdate: function(twn){
+						cusCamY = 368 + (650*twn.progress);
+					},
+					onComplete: function(twn)
+					{
+						// swap them so you dont have to create more character instances
+						game.dad = mario;
+						game.gf = pori;
+					}
+				}
+			);
+		case "poricam":	
+			
+			if (value2 == "dialogue"){
+				game.defaultCamZoom = 1;
+				cuscamX = 1350;
+				cuscamY = 150;
+			
+				// wtfffff
+				game.dad = pori;
+				game.triggerEventNote("Change Character", "dad", "pori-front");
+				pori = game.dad;
+				game.dad = mario;
+				game.gf = pori;
+
+				pori.playAnim("dialogue", true);
+				pori.specialAnim = true;
+			}else if (value2 == "fuckhesgone"){
+				game.cameraSpeed = 3;
+				cuscamX = 1300;
+			}else{
+				cuscamX = 1246;
+			}
+		case "shadowcam":
+			game.defaultCamZoom = game.stage.stageData.defaultZoom;
+		
+			cuscamX = 129;
+			cuscamY = 236;
+			
+			pori.skipDance = true;
+			FlxTween.tween(
+				pori,
+				{x: pori.x + 360, angle: 15}, 
+				3.6, 
+				{
+					ease: FlxEase.quadIn,
+					onComplete: function(twn)
+					{
+						pori.visible = false;
+					}
+				}
+			);
+		case "mariocam":
+			cuscamX = 582 - 75;
+			cuscamY = (236+368)*0.5;
+		case "centercam":
+			cuscamX = 775;
+			cuscamY = 236;
+		
+		case "midshadow":
+			cuscamX = 775 - 100;
+			cuscamY = (236+368)*0.5;
+		case "midmario":
+			cuscamX = 775;
+			cuscamY = (236+368)*0.5 + 10;		
+		case "midpori":
+			cuscamX = 775 + 250;
+			cuscamY = (236+368)*0.5;
+			
+			// wtfffff
+			game.dad = pori;
+			game.triggerEventNote("Change Character", "dad", "pori");
+			pori = game.dad;
+			game.dad = mario;
+			game.gf = pori;
+			
+			pori.flipX = !pori.flipX;
+		case "resetcam":
+			cuscamX = null;
+			cuscamY = null;
+		case "youdontknow":
+			cuscamX = 0;
+			cuscamY = 120;
+			
+			game.defaultCamZoom = 1.25;
+			
+		case "doflash":
+			game.camGame.zoom += 0.1;
+			
+			if (flashingLights && false){
+				if (value2 == "1")
+					game.camOverlay.flash(0xAAFFFFFF, 0.6, null, true);
+				else
+					game.camOverlay.flash(0xEEFFFFFF, 0.6, null, true);
+			}
+		case "flashin":
+			flashTween = FlxTween.num(
+				0, 
+				1, 
+				0.3, 
+				{
+					ease: FlxEase.sineOut,
+					onUpdate: function(twn){
+						game.camHUD.bgColor = FlxColor.fromRGBFloat(1, 1, 1, twn.percent);
+					}
+				}
+			);
+		case "flashout":
+			flashTween.cancel();
+			FlxTween.num(0, 1, 1.6, {
+				ease: FlxEase.circOut,
+				onUpdate: function(twn){
+				game.camHUD.bgColor = FlxColor.fromRGBFloat(1, 1, 1, 1-twn.percent);
+			}});
+	}
+}

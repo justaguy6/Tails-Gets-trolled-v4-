@@ -1,0 +1,416 @@
+function defaultBeatZoom(){
+    game.camGame.zoom += 0.015 * game.camZoomingMult;
+    game.camHUD.zoom += 0.03 * game.camZoomingMult;
+}
+
+var picoMode = false;
+
+function goodNoteHit(note:Note){
+	if(note.gfNote){
+		game.boyfriend.idleWhenHold = true;
+		game.gf.idleWhenHold = false;
+		
+		GameOverSubstate.characterName = "pico-dead";
+		picoMode = true;
+	}else{
+		game.boyfriend.idleWhenHold = false;
+		game.gf.idleWhenHold = true;
+		
+		GameOverSubstate.characterName = "alex-dead";
+		picoMode = false;
+	}
+}
+
+function onGameOverStart()
+{
+	var instance = getInstance();
+	instance.defaultCamZoom = 0.75;
+	
+	if (picoMode){
+		instance.boyfriend.x += 125;
+		instance.boyfriend.y -= 50;
+		
+		var mid = instance.boyfriend.getGraphicMidpoint(); 	
+		instance.camFollow.x = mid.x;
+		instance.camFollow.y = mid.y;
+	}
+}
+
+function numericForInterval(start, end, interval, func){
+    var index = start;
+    while(index < end){
+        func(index);
+        index += interval;
+    }
+}
+
+function addBlankMod(modName, defaultVal){
+    modManager.quickRegister(new SubModifier(modName, modManager));
+	modManager.setValue(modName, defaultVal);
+}
+
+function postModifierRegister(){
+    addBlankMod("kadeWave", 0);
+}
+
+function onCountdownStarted(){
+    if(disableModcharts){
+        getInstance().saveScore = false;
+        return;
+    }
+    var counter:Int = -1;
+    numericForInterval(136, 180, 16, function(step){
+        counter = counter + 1;
+        if(counter>2)counter = 0;
+        if(counter==0){
+            modManager.queueSet(step, "drunk", 0.3);
+            modManager.queueSet(step, "tipsy", 0.5);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==1){
+            modManager.queueSet(step, "drunk", -0.3);
+            modManager.queueSet(step, "tipsy", 0.7);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==2){
+            modManager.queueSet(step, "drunk", 0.1);
+            modManager.queueSet(step, "tipZ", 0.4);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }
+    });
+
+    modManager.queueSet(180, "confusionOffset", 15);
+    modManager.queueSet(180, "tipZ", -0.4);
+    modManager.queueEase(180, 180+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(180, 180+4, "tipZ", 0, "quadOut");
+    modManager.queueSet(180, "xmod", 0.75);
+    modManager.queueEase(180, 180+4, "xmod", 1, "quadOut");
+
+    modManager.queueSet(186, "confusionOffset", -15);
+    modManager.queueSet(186, "tipZ", -0.4);
+    modManager.queueEase(186, 186+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(186, 186+4, "tipZ", 0, "quadOut");
+    modManager.queueSet(186, "xmod", 0.75);
+    modManager.queueEase(186, 186+4, "xmod", 1, "quadOut");
+
+    modManager.queueSet(190, "confusionOffset", -5);
+    modManager.queueSet(190, "drunk", 0.5);
+    modManager.queueEase(190, 190+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(190, 190+4, "drunk", 0, "quadOut");
+    modManager.queueSet(190, "xmod", 0.75);
+    modManager.queueEase(190, 190+4, "xmod", 1, "quadOut");
+
+    numericForInterval(200, 244, 16, function(step){
+        counter = counter + 1;
+        if(counter>2)counter = 0;
+        if(counter==0){
+            modManager.queueSet(step, "drunk", 0.3);
+            modManager.queueSet(step, "tipsy", 0.5);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==1){
+            modManager.queueSet(step, "drunk", -0.3);
+            modManager.queueSet(step, "tipsy", 0.7);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==2){
+            modManager.queueSet(step, "drunk", 0.1);
+            modManager.queueSet(step, "tipZ", 0.4);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }
+    });
+
+    /*modManager.queueSet(200, "drunk", 0.3);
+    modManager.queueSet(200, "tipsy", 0.5);
+    modManager.queueEase(200, 200+4, "drunk", 0, "quadOut");
+    modManager.queueEase(200, 200+4, "tipsy", 0, "quadOut");
+    modManager.queueSet(200, "xmod", 0.9);
+    modManager.queueEase(200, 200+4, "xmod", 1, "quadOut");
+
+    modManager.queueSet(216, "drunk", -0.3);
+    modManager.queueSet(216, "tipsy", 0.7);
+    modManager.queueEase(216, 216+4, "drunk", 0, "quadOut");
+    modManager.queueEase(216, 216+4, "tipsy", 0, "quadOut");
+    modManager.queueSet(216, "xmod", 0.9);
+    modManager.queueEase(216, 216+4, "xmod", 1, "quadOut");
+
+    modManager.queueSet(232, "drunk", 0.1);
+    modManager.queueSet(232, "tipZ", 0.4);
+    modManager.queueEase(232, 232+4, "drunk", 0, "quadOut");
+    modManager.queueEase(232, 232+4, "tipZ", 0, "quadOut");
+    modManager.queueSet(232, "xmod", 0.9);
+    modManager.queueEase(232, 232+4, "xmod", 1, "quadOut");*/
+    
+    modManager.queueSet(244, "confusionOffset", 15);
+    modManager.queueSet(244, "tipZ", -0.4);
+    modManager.queueEase(244, 244+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(244, 244+4, "tipZ", 0, "quadOut");
+    modManager.queueSet(244, "xmod", 0.75);
+    modManager.queueEase(244, 244+4, "xmod", 1, "quadOut");
+
+    modManager.queueSet(250, "confusionOffset", -15);
+    modManager.queueSet(250, "tipZ", -0.4);
+    modManager.queueEase(250, 250+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(250, 250+4, "tipZ", 0, "quadOut");
+    modManager.queueSet(250, "xmod", 0.75);
+    modManager.queueEase(250, 250+4, "xmod", 1, "quadOut");
+
+    numericForInterval(264, 488+16, 16, function(step){
+        counter = counter + 1;
+        if(counter>3)counter = 0;
+        if(step>=368 && step<=384)return;
+
+        if(counter==0){
+            modManager.queueSet(step, "drunk", 0.3);
+            modManager.queueSet(step, "tipsy", 0.5);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==1){
+            modManager.queueSet(step, "drunk", -0.3);
+            modManager.queueSet(step, "tipsy", 0.7);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==2){
+            modManager.queueSet(step, "drunk", 0.2);
+            modManager.queueSet(step, "tipZ", 0.4);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==3){
+            modManager.queueSet(step, "confusionOffset", -15);
+            modManager.queueSet(step, "tipsy", 0.2);
+            modManager.queueSet(step, "flip", -0.1);
+            modManager.queueSet(step, "tipZ", -0.4);
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueEase(step, step+4, "confusionOffset", 0, "quadOut");
+            modManager.queueEase(step, step+4, "flip", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }
+    });
+    modManager.queueEase(512, 524, "kadeWave", 1, "quadOut");
+    modManager.queueEase(755, 767, "kadeWave", 0, "quartIn");
+
+    modManager.queueFunc(512, 768, function(event:CallbackEvent, cDS:Float){
+        var s = cDS - 512;
+        var beat = (s / 4) / 2;
+        var cols = [0,1,2,3];
+        for(i in cols){
+            modManager.setValue("transform" + i + "Y", (25 * (Math.cos(beat + i * .02) + Math.sin(beat * 0.07))) * modManager.getValue("kadeWave"));
+            modManager.setValue("transform" + i + "X", (25 * Math.sin(beat + i * .1)) * modManager.getValue("kadeWave"));
+        }
+        
+    });
+
+    numericForInterval(648, 692, 16, function(step){
+        counter = counter + 1;
+        if(counter>3)counter = 0;
+        if(step>=368 && step<=384)return;
+
+        if(counter==0){
+            modManager.queueSet(step, "drunk", 0.3);
+            modManager.queueSet(step, "tipsy", 0.5);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==1){
+            modManager.queueSet(step, "drunk", -0.3);
+            modManager.queueSet(step, "tipsy", 0.7);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==2){
+            modManager.queueSet(step, "drunk", 0.2);
+            modManager.queueSet(step, "tipZ", 0.4);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==3){
+            modManager.queueSet(step, "confusionOffset", -15);
+            modManager.queueSet(step, "tipsy", 0.2);
+            modManager.queueSet(step, "flip", -0.1);
+            modManager.queueSet(step, "tipZ", -0.4);
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueEase(step, step+4, "confusionOffset", 0, "quadOut");
+            modManager.queueEase(step, step+4, "flip", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }
+    });
+
+    modManager.queueSet(692, "confusionOffset", 15);
+    modManager.queueSet(692, "tipZ", -0.4);
+    modManager.queueEase(692, 692+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(692, 692+4, "tipZ", 0, "quadOut");
+    modManager.queueSet(692, "xmod", 0.75);
+    modManager.queueEase(692, 692+4, "xmod", 1, "quadOut");
+
+    modManager.queueSet(698, "confusionOffset", -15);
+    modManager.queueSet(698, "tipZ", -0.4);
+    modManager.queueEase(698, 698+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(698, 698+4, "tipZ", 0, "quadOut");
+    modManager.queueSet(698, "xmod", 0.75);
+    modManager.queueEase(698, 698+4, "xmod", 1, "quadOut");
+
+    modManager.queueSet(702, "confusionOffset", -5);
+    modManager.queueSet(702, "drunk", 0.5);
+    modManager.queueEase(702, 702+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(702, 702+4, "drunk", 0, "quadOut");
+    modManager.queueSet(702, "xmod", 0.75);
+    modManager.queueEase(702, 702+4, "xmod", 1, "quadOut");
+
+    numericForInterval(712, 752, 16, function(step){
+        counter = counter + 1;
+        if(counter>3)counter = 0;
+        if(step>=368 && step<=384)return;
+
+        if(counter==0){
+            modManager.queueSet(step, "drunk", 0.3);
+            modManager.queueSet(step, "tipsy", 0.5);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==1){
+            modManager.queueSet(step, "drunk", -0.3);
+            modManager.queueSet(step, "tipsy", 0.7);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==2){
+            modManager.queueSet(step, "drunk", 0.2);
+            modManager.queueSet(step, "tipZ", 0.4);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==3){
+            modManager.queueSet(step, "confusionOffset", -15);
+            modManager.queueSet(step, "tipsy", 0.2);
+            modManager.queueSet(step, "flip", -0.1);
+            modManager.queueSet(step, "tipZ", -0.4);
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueEase(step, step+4, "confusionOffset", 0, "quadOut");
+            modManager.queueEase(step, step+4, "flip", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }
+    });
+
+
+    var cols = [0,1,2,3];
+    for(i in cols){
+        modManager.queueEase(767, 768, "transform" + i + "X", 0, "quartIn");
+        modManager.queueEase(767, 768, "transform" + i + "Y", 0, "quartIn");
+    }
+
+    modManager.queueEase(764, 768, "tipZ", 0.75, "quartIn");
+    modManager.queueEase(764, 768, "tipsy", 0.5, "quartIn");
+    modManager.queueEase(764, 768, "tipsyOffset", 4, "quartIn");
+
+    modManager.queueEase(1024-8, 1024+8, "tipsy", 0, "quartOut");
+    modManager.queueEase(1024-8, 1024+8, "tipZ", 0, "quartOut");
+    modManager.queueEase(1024, 1024+8, "drunkZ", 0, "quartOut");
+    modManager.queueEase(1024, 1024+8, "beat", 0.5, "quartOut");
+    modManager.queueEase(1536, 1536+8, "beat", 0, "quartOut");
+    numericForInterval(1544, 1586, 16, function(step){
+        counter = counter + 1;
+        if(counter>3)counter = 0;
+        if(step>=368 && step<=384)return;
+
+        if(counter==0){
+            modManager.queueSet(step, "drunk", 0.3);
+            modManager.queueSet(step, "tipsy", 0.5);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==1){
+            modManager.queueSet(step, "drunk", -0.3);
+            modManager.queueSet(step, "tipsy", 0.7);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==2){
+            modManager.queueSet(step, "drunk", 0.2);
+            modManager.queueSet(step, "tipZ", 0.4);
+            modManager.queueEase(step, step+4, "drunk", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }else if(counter==3){
+            modManager.queueSet(step, "confusionOffset", -15);
+            modManager.queueSet(step, "tipsy", 0.2);
+            modManager.queueSet(step, "flip", -0.1);
+            modManager.queueSet(step, "tipZ", -0.4);
+            modManager.queueEase(step, step+4, "tipsy", 0, "quadOut");
+            modManager.queueEase(step, step+4, "confusionOffset", 0, "quadOut");
+            modManager.queueEase(step, step+4, "flip", 0, "quadOut");
+            modManager.queueEase(step, step+4, "tipZ", 0, "quadOut");
+            modManager.queueSet(step, "xmod", 0.9);
+            modManager.queueEase(step, step+4, "xmod", 1, "quadOut");
+        }
+    });
+
+    modManager.queueSet(1586, "confusionOffset", -15);
+    modManager.queueSet(1586, "tipZ", -0.4);
+    modManager.queueEase(1586, 1586+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(1586, 1586+4, "tipZ", 0, "quadOut");
+    modManager.queueSet(1586, "xmod", 0.75);
+    modManager.queueEase(1586, 1586+4, "xmod", 1, "quadOut");
+
+    modManager.queueSet(1596, "confusionOffset", 15);
+    modManager.queueSet(1596, "drunk", 0.5);
+    modManager.queueEase(1596, 1596+4, "confusionOffset", 0, "quadOut");
+    modManager.queueEase(1596, 1596+4, "drunk", 0, "quadOut");
+    modManager.queueSet(1596, "xmod", 0.75);
+    modManager.queueEase(1596, 1596+4, "xmod", 1, "quadOut");
+
+}
+
+function onBeatHit(){    
+    if (curBeat >= 384){ // section 96
+        game.zoomEveryBeat = 4; // default
+
+    }else if (curBeat >= 256){ // section 64
+        game.zoomEveryBeat = 0;
+
+        var dick = curBeat % 4;
+        if (dick == 1 || dick == 3)
+            defaultBeatZoom();
+    }
+}
+
+function onCreatePost()
+{
+    game.healthBar.flipX = true;
+	
+	game.variables.set("titleCardOnRight", true);
+}

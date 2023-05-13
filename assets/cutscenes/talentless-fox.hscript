@@ -1,0 +1,98 @@
+isSkippable = true;
+
+////
+var theImage = new FlxSprite().loadGraphic(Paths.image("warning"));
+var theAudio = new FlxSound().loadEmbedded(Paths.sound("cutscenes/talentless-fox/talentless-fox"));
+FlxG.sound.list.add(theAudio);
+
+// cache for laterrrr.
+var daCutscene = Paths.image("cutscenes/talentless-fox-1");
+theImage.antialiasing = ClientPrefs.globalAntialiasing;
+
+function panel8(){ // *bf and gf*
+	// trace(theAudio.time);
+	timer(4, endCutscene);
+}
+
+function panel7(){ // tails: who's there
+	// trace(theAudio.time);
+	tweenCamera({x:598, y:1497, width:850}, 1, {startDelay: 2, onComplete: panel8});
+}
+
+function panel6(){ // *tails gets a microphone thrown at him* tails: ouch
+	// trace(theAudio.time); // 17.2 sec
+	setCameraPosition(700, 1030, 720);
+	tweenCamera({x:0, y:1400, width:800}, 1, {startDelay: 0.9, onComplete: panel7});
+}
+
+function panel5(){ // tails: they even smell beutiful too
+	// trace(theAudio.time); // 15.5 sec
+	timer(0.5, function(){ // wait a bit before cutting to the next panel
+		// trace(theAudio.time); // 16 sec
+		setCameraPosition(0, 1028, 697);
+		timer(1.5, panel6);
+	});
+}
+
+function focusTrolls(){ // hehehe
+	// trace(theAudio.time); // 12.5 sec
+	tweenCamera({x:833, y:722, width:535}, 2, {startDelay: 1, onComplete: panel5});
+}
+
+function focusFlowers(){ // *flowers*
+	// trace(theAudio.time); // 10.5 sec
+	tweenCamera({x:826, y:780, width:148}, 1, {startDelay: 1, onComplete: focusTrolls});
+}
+
+function panel4(){ // tails: these flowers are beutiful too
+	trace(theAudio.time); // 9.5 sec
+	tweenCamera({x:665, y:590, width:560}, 1, {startDelay: 1.5, onComplete: focusFlowers});
+}
+
+function panel3(){ // tails: ahhhhhh what a beutiful day
+	trace(theAudio.time); // 7.5 sec
+	tweenCamera({x:2, y:520, width:946}, 1, {startDelay: 0.5, onComplete: panel4});
+}
+
+function panel2(){ // tails lololololo's}
+	// trace(theAudio.time); // 6.5 sec
+	tweenCamera({x:2, y:520, width:946}, 1, {startDelay: 1, onComplete: panel3});
+}
+
+function panel1(){ 
+	// trace(theAudio.time); // 3 sec
+	timer(1.5, function(){ 
+		// trace(theAudio.time); // 4.5 sec
+		theImage.loadGraphic(daCutscene);
+		theImage.alpha = 1;
+			
+		setCameraPosition(0, 63, 870);
+		
+		// Move to panel 2
+		tweenCamera({x:490, y:5, width:960}, 1, {startDelay: 1, onComplete: panel2});
+	});
+}
+
+function cutsceneStart(){
+	add(theImage);
+	
+	var mid = theImage.getMidpoint();
+	camFollowPos.setPosition(mid.x, mid.y);
+	camera.zoom = 0.65;
+
+	tween(theImage, {alpha: 0}, 2, {startDelay: 1, onComplete: panel1});
+	
+	theAudio.play();
+}
+
+function onUpdate(){
+	
+}
+
+// called when the cutscene is finished, or skipped.
+// use this to clean up any objects that were created for this cutscene
+function onCutsceneEnd()
+{
+	theImage.destroy();
+	theAudio.destroy();
+}

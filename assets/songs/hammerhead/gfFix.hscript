@@ -1,0 +1,13 @@
+function onCreatePost(){
+    var game =  getInstance();
+    for (note in game.playerField.getAllNotes()){
+        if (note.noteType == "Alt Animation"){
+            note.noteType = "GF Sing";
+            note.gfNote = true;
+        }
+        if(note.gfNote)
+            note.characters = [game.gf];
+        else
+            note.characters = [game.boyfriend];
+    }
+}

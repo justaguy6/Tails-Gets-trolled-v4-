@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Free texture packer v0.6.7 http://free-tex-packer.com
+-->
+<TextureAtlas imagePath="front.png" width="8036" height="1686">
+  <SubTexture name="angry poses0001" x="0" y="0"  width="650" height="802" frameX="-140" frameY="-96" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0040" x="650" y="0"  width="626" height="807" frameX="-123" frameY="-91" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0042" x="1276" y="0"  width="628" height="807" frameX="-126" frameY="-91" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0015" x="1904" y="0"  width="722" height="810" frameX="-48" frameY="-88" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0027" x="2626" y="0"  width="667" height="811" frameX="-108" frameY="-87" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0009" x="3293" y="0"  width="670" height="812" frameX="-135" frameY="-87" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0035" x="3963" y="0"  width="715" height="814" frameX="-56" frameY="-84" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0003" x="4678" y="0"  width="656" height="815" frameX="-131" frameY="-83" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0007" x="5334" y="0"  width="668" height="815" frameX="-134" frameY="-84" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0032" x="6002" y="0"  width="671" height="816" frameX="-159" frameY="-82" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0017" x="6673" y="0"  width="704" height="817" frameX="-70" frameY="-81" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0005" x="7377" y="0"  width="659" height="818" frameX="-132" frameY="-81" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0020" x="0" y="802"  width="621" height="818" frameX="-123" frameY="-80" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0030" x="621" y="807"  width="683" height="819" frameX="-158" frameY="-79" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0022" x="1304" y="810"  width="650" height="821" frameX="-121" frameY="-77" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0052" x="1954" y="811"  width="696" height="821" frameX="-158" frameY="-77" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0050" x="2650" y="812"  width="687" height="822" frameX="-158" frameY="-76" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0047" x="3337" y="814"  width="665" height="824" frameX="-89" frameY="-74" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0025" x="4002" y="814"  width="635" height="825" frameX="-113" frameY="-73" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0037" x="4637" y="815"  width="710" height="825" frameX="-44" frameY="-73" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0045" x="5347" y="816"  width="664" height="826" frameX="-89" frameY="-72" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0061" x="6011" y="816"  width="466" height="861" frameX="-61" frameY="-37" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0055" x="6477" y="817"  width="438" height="864" frameX="-31" frameY="-34" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0059" x="6915" y="817"  width="454" height="865" frameX="-58" frameY="-33" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0057" x="7369" y="818"  width="444" height="868" frameX="-46" frameY="-30" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0002" x="0" y="0"  width="650" height="802" frameX="-140" frameY="-96" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0004" x="4678" y="0"  width="656" height="815" frameX="-131" frameY="-83" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0006" x="7377" y="0"  width="659" height="818" frameX="-132" frameY="-81" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0008" x="5334" y="0"  width="668" height="815" frameX="-134" frameY="-84" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0010" x="3293" y="0"  width="670" height="812" frameX="-135" frameY="-87" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0011" x="3293" y="0"  width="670" height="812" frameX="-135" frameY="-87" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0012" x="3293" y="0"  width="670" height="812" frameX="-135" frameY="-87" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0013" x="3293" y="0"  width="670" height="812" frameX="-135" frameY="-87" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0014" x="3293" y="0"  width="670" height="812" frameX="-135" frameY="-87" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0016" x="1904" y="0"  width="722" height="810" frameX="-48" frameY="-88" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0018" x="6673" y="0"  width="704" height="817" frameX="-70" frameY="-81" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0019" x="6673" y="0"  width="704" height="817" frameX="-70" frameY="-81" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0021" x="0" y="802"  width="621" height="818" frameX="-123" frameY="-80" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0023" x="1304" y="810"  width="650" height="821" frameX="-121" frameY="-77" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0024" x="1304" y="810"  width="650" height="821" frameX="-121" frameY="-77" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0026" x="4002" y="814"  width="635" height="825" frameX="-113" frameY="-73" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0028" x="2626" y="0"  width="667" height="811" frameX="-108" frameY="-87" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0029" x="2626" y="0"  width="667" height="811" frameX="-108" frameY="-87" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0031" x="621" y="807"  width="683" height="819" frameX="-158" frameY="-79" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0033" x="6002" y="0"  width="671" height="816" frameX="-159" frameY="-82" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0034" x="6002" y="0"  width="671" height="816" frameX="-159" frameY="-82" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0036" x="3963" y="0"  width="715" height="814" frameX="-56" frameY="-84" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0038" x="4637" y="815"  width="710" height="825" frameX="-44" frameY="-73" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0039" x="4637" y="815"  width="710" height="825" frameX="-44" frameY="-73" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0041" x="650" y="0"  width="626" height="807" frameX="-123" frameY="-91" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0043" x="1276" y="0"  width="628" height="807" frameX="-126" frameY="-91" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0044" x="1276" y="0"  width="628" height="807" frameX="-126" frameY="-91" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0046" x="5347" y="816"  width="664" height="826" frameX="-89" frameY="-72" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0048" x="3337" y="814"  width="665" height="824" frameX="-89" frameY="-74" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0049" x="3337" y="814"  width="665" height="824" frameX="-89" frameY="-74" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0051" x="2650" y="812"  width="687" height="822" frameX="-158" frameY="-76" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0053" x="1954" y="811"  width="696" height="821" frameX="-158" frameY="-77" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0054" x="1954" y="811"  width="696" height="821" frameX="-158" frameY="-77" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0056" x="6477" y="817"  width="438" height="864" frameX="-31" frameY="-34" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0058" x="7369" y="818"  width="444" height="868" frameX="-46" frameY="-30" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0060" x="6915" y="817"  width="454" height="865" frameX="-58" frameY="-33" frameWidth="891" frameHeight="970"/>
+  <SubTexture name="angry poses0062" x="6011" y="816"  width="466" height="861" frameX="-61" frameY="-37" frameWidth="891" frameHeight="970"/>
+</TextureAtlas>

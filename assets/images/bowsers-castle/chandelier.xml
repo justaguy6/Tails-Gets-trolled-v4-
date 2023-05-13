@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="chandelier.png">
+	<!-- Created with Adobe Animate version 22.0.0.93 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="chandelier0000" x="0" y="0" width="320" height="261" frameX="-1" frameY="0" frameWidth="321" frameHeight="261"/>
+	<SubTexture name="chandelier0001" x="0" y="0" width="320" height="261" frameX="-1" frameY="0" frameWidth="321" frameHeight="261"/>
+	<SubTexture name="chandelier0002" x="0" y="0" width="320" height="261" frameX="-1" frameY="0" frameWidth="321" frameHeight="261"/>
+	<SubTexture name="chandelier0003" x="320" y="0" width="320" height="261" frameX="-1" frameY="0" frameWidth="321" frameHeight="261"/>
+	<SubTexture name="chandelier0004" x="640" y="0" width="320" height="261" frameX="-1" frameY="0" frameWidth="321" frameHeight="261"/>
+	<SubTexture name="chandelier0005" x="640" y="0" width="320" height="261" frameX="-1" frameY="0" frameWidth="321" frameHeight="261"/>
+	<SubTexture name="chandelier0006" x="0" y="261" width="320" height="261" frameX="-1" frameY="0" frameWidth="321" frameHeight="261"/>
+	<SubTexture name="chandelier0007" x="0" y="261" width="320" height="261" frameX="-1" frameY="0" frameWidth="321" frameHeight="261"/>
+	<SubTexture name="chandelier0008" x="320" y="261" width="321" height="261"/>
+	<SubTexture name="chandelier0009" x="641" y="261" width="321" height="261"/>
+	<SubTexture name="chandelier0010" x="641" y="261" width="321" height="261"/>
+	<SubTexture name="chandelier0011" x="641" y="261" width="321" height="261"/>
+</TextureAtlas>
